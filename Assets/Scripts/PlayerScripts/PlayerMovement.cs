@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isOnGround;
     private Rigidbody2D rgb;
+    private bool lookingRight = false;
 
     private void Start()
     {
@@ -22,12 +23,31 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        rgb.velocity = new Vector3(Input.GetAxis(horizontalInputAxisName) * Speed, rgb.velocity.y);
+        ProcessMovement();
+        ProcessJump();
+    }
 
-        if (Input.GetButtonDown(buttonDownName) && isOnGround)
+    private void ProcessMovement()
+    {
+        float inputMovement = Input.GetAxis(horizontalInputAxisName);
+
+        rgb.velocity = new Vector3(inputMovement * Speed, rgb.velocity.y);
+        ManageOrientation(inputMovement);
+    }
+
+    private void ManageOrientation(float horizontalInput)
+    {
+        if ((lookingRight && horizontalInput < 0) || (!lookingRight && horizontalInput > 0))
         {
-            rgb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+            lookingRight = !lookingRight;
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y);
         }
+    }
+
+    private void ProcessJump()
+    {
+        if (Input.GetButtonDown(buttonDownName) && isOnGround)
+            rgb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
     }
 
     void SetGroundCollisionEnter()
