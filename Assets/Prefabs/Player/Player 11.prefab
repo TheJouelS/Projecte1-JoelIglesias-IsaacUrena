@@ -259,9 +259,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eef365b8070c9645a75ba01b27fd63d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4.5
-  jumpForce: 20
+  horizontalInputAxisName: Horizontal
+  buttonDownName: Jump
   NotifyCollisionGround: {fileID: 2718950740748519379}
+  Speed: 4.5
+  JumpForce: 20
 --- !u!50 &1823538696655317516
 Rigidbody2D:
   serializedVersion: 4
@@ -299,6 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5607992019987629376}
   - component: {fileID: 1574394416786145777}
+  - component: {fileID: 274747387237183923}
   m_Layer: 0
   m_Name: PlayerBoddy
   m_TagString: Untagged
@@ -356,3 +359,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.21}
   serializedVersion: 2
   m_Radius: 1.11
+--- !u!114 &274747387237183923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3862661970390803844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53539f02f66ea884f8ebdbd832fcb0dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftTagCollision: LeftSideCollision
+  RightTagCollision: RightSideCollision
