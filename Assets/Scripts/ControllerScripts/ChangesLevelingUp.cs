@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChangesLevelingUp : MonoBehaviour
 {
-    [SerializeField] GameObject playerContainer;
+    [SerializeField] GameObject playerContainer, playerPosition;
     [SerializeField] List<GameObject> playerList = new List<GameObject>();
 
     public Vector3 CurrentScale = new Vector3(0.25f, 0.25f, 0);
@@ -51,6 +51,9 @@ public class ChangesLevelingUp : MonoBehaviour
 
     private void EvolveCharacter(bool firstTime)
     {
+        playerPosition.transform.SetParent(playerContainer.transform);
+        playerPosition.transform.position = Vector3.zero;
+
         Destroy(currentPlayerAvatar);
         playerIndex = PlayerLevel.GetPlayerLevel() - 1;
 
@@ -58,9 +61,10 @@ public class ChangesLevelingUp : MonoBehaviour
             CurrentScale = new Vector3(CurrentScale.x * PlayerScaleIncrease, CurrentScale.y * PlayerScaleIncrease, 0);
 
         currentPlayerAvatar = Instantiate(playerList[playerIndex]);
-
         currentPlayerAvatar.transform.position = Vector3.zero;
         currentPlayerAvatar.transform.SetParent(playerContainer.transform);
         currentPlayerAvatar.transform.localScale = CurrentScale;
+
+        playerPosition.transform.SetParent(currentPlayerAvatar.transform);
     }
 }

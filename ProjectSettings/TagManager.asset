@@ -9,6 +9,8 @@ TagManager:
   - JugHole
   - LeftSideCollision
   - RightSideCollision
+  - PlayerBoddy
+  - Viking_Enemy
   layers:
   - Default
   - TransparentFX
