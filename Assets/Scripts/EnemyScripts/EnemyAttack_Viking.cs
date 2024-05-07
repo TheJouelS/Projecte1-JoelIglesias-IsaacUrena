@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAttack_Viking : MonoBehaviour
 {
     [SerializeField] Transform playerPosition;
-
+    public bool Debug = false;
     public AxeSpawner axeSpawner;
     public VikingAxe_NotifyOnCollision NotifyCollisionAxe;
     public string attackingTagAnimation = "isAttacking";
@@ -24,7 +24,7 @@ public class EnemyAttack_Viking : MonoBehaviour
     private void Update()
     {
         Vector3 direction = playerPosition.position - transform.position;
-
+        
         if (direction.magnitude <= rangedAttack)
             axeSpawner.playerIsInRange = true;
         else
@@ -52,4 +52,14 @@ public class EnemyAttack_Viking : MonoBehaviour
     {
         axeSpawner.StopThrowingAnimation();
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        if (!Debug)
+            return;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, rangedAttack);  
+    }
+#endif
 }

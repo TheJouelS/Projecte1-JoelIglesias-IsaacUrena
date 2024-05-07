@@ -767,6 +767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPosition: {fileID: 1544712066}
+  Debug: 1
   axeSpawner: {fileID: 928343983}
   NotifyCollisionAxe: {fileID: 1330901868}
   attackingTagAnimation: isAttacking
