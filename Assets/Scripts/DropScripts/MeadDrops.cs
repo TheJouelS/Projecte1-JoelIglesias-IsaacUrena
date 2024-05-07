@@ -11,7 +11,7 @@ public class MeadDrops : MonoBehaviour
         if (collision.tag == tagDropToTheGround || collision.tag == tagPlayerHole)
         {
             if (collision.tag == tagPlayerHole)
-                PlayerScore.SetScore(false);
+                PlayerScore.UpScore();
 
             Destroy(gameObject);
         }

@@ -6,14 +6,30 @@ public class PlayerScore : MonoBehaviour
 {
     private static int score = 0;
 
-    public static void SetScore(bool reset)
+    public static void UpScore()
     {
-        if(reset)
-            score = 0;
-        else if (score < PlayerLevel.GetNextGoal())
+        if (score < PlayerLevel.GetNextGoal())
         {
             score++;
-            Debug.Log("Tu puntuación: " + score);
+            Debug.Log("Tu puntuación Suma: " + score);
+        }
+    }
+
+    public static void ReduceScore(bool reset, uint decrementValue = 1)
+    {
+        if (reset)
+        {
+            score = 0;
+            Debug.Log("Tu puntuación se resetea: " + score);
+
+        }
+        else
+        {
+            if (decrementValue <= score)
+            {
+                score -= (int) decrementValue;
+                Debug.Log("Tu puntuación resta: " + score);
+            }
         }
     }
 

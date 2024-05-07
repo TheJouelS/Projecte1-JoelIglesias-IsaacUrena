@@ -8,18 +8,19 @@ public class EnemyMovement_Viking : MonoBehaviour
 {
     [SerializeField] Transform playerPosition;
 
+    public AxeSpawner axeSpawner;
     public VikingAxe_NotifyOnCollision NotifyCollisionAxe;
     public float speed;
+    public float impulseDamage;
     public string walkingTagAnimation = "isWalking";
 
-    private SpriteRenderer spr;
     private Animator animator;
     private Vector3 direction = Vector3.zero;
     private bool collidedWithPlayer = false;
+    private bool isDying = false;
 
     private void Start()
     {
-        spr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         animator.SetBool(walkingTagAnimation, true);
 
@@ -30,26 +31,28 @@ public class EnemyMovement_Viking : MonoBehaviour
     void Update()
     {
         ProcessMovement();
+        ManageOrientation();
     }
 
     private void ProcessMovement()
     {
-        if (!collidedWithPlayer)
+        if (!(AxeSpawner.playerIsUp && axeSpawner.playerIsInRange))
         {
-            direction.x = playerPosition.position.x - transform.position.x;
-            transform.position = transform.position + direction.normalized * speed * Time.deltaTime;
+            if (!collidedWithPlayer && !isDying)
+            {
+                direction.x = playerPosition.position.x - transform.position.x;
+                transform.position = transform.position + direction.normalized * speed * Time.deltaTime;
+            }
         }
-
-        ManageOrientation();
     }
 
     private void ManageOrientation()
     {
         if (direction.x < -0.1f)
-            spr.flipX = true;
+            transform.localScale = new Vector2 (Mathf.Abs(transform.localScale.x) * (-1), transform.localScale.y);
 
-        if (direction.x > 0.1f) 
-            spr.flipX = false;
+        if (direction.x > 0.1f)
+            transform.localScale = new Vector2 (Mathf.Abs(transform.localScale.x), transform.localScale.y);
     }
 
     private void StopMoving()
@@ -60,5 +63,18 @@ public class EnemyMovement_Viking : MonoBehaviour
     private void KeepMoving()
     {
         collidedWithPlayer = false;
+    }
+
+    private void IsTakingDamage() //It's called from the Animator
+    {
+        if (direction.x < 0f)
+            transform.position = transform.position + Vector3.right * impulseDamage;
+        else
+            transform.position = transform.position + Vector3.left * impulseDamage;
+    }
+
+    private void IsDying() //It's called from the Animator
+    {
+        isDying = true;
     }
 }

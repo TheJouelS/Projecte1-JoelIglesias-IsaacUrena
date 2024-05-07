@@ -9,7 +9,7 @@ public class PlayerLevel : MonoBehaviour
     private static int playerLevel = 1;
     private static int maxLevel = 18;
     private static int nextGoal;
-    private static int scoringMargin = 2;
+    private static int scoringMargin = 5;
 
     private void Start()
     {
@@ -46,7 +46,7 @@ public class PlayerLevel : MonoBehaviour
         return playerLevel;
     }
 
-    public static int GetMaxLevel()
+    public static int GetMaxLevel() //Para bonus extras y enemigos fuertes
     {
         return maxLevel;
     }

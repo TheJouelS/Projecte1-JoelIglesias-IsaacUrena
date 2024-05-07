@@ -1,33 +1,83 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private static uint currentLife = 6;
-    private static uint maxLife = 6;
+    [SerializeField] private uint currentLife, maxLife;
+    [SerializeField] private float timeBeingDamaged;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
-    public static void TakeDamage()
+    private static bool isBeingDamaged = false;
+    private static uint copy_currentLife;
+    private static uint copy_maxLife;
+    private static float copy_timeBeingDamaged;
+    private static Color normalColor;
+
+    private void Start()
     {
-        if (currentLife > 0)
-            currentLife--;
+        copy_currentLife = currentLife;
+        copy_maxLife = maxLife;
+        copy_timeBeingDamaged = timeBeingDamaged;
+        normalColor = spriteRenderer.color;
     }
 
-    public static void Heal()//Para gotas azules...
+    private void Update()
     {
-        if (currentLife < maxLife)
-            currentLife++;
+        if (isBeingDamaged)
+            ChangeSpriteColor();
+
+        if (isPlayerAtZero())
+            ResetCurrentValues();
+    }
+
+    private void ChangeSpriteColor() 
+    {
+        spriteRenderer.color = Color.red;
+
+        if (copy_timeBeingDamaged > 0f)
+            copy_timeBeingDamaged -= Time.deltaTime;
+        else
+        {
+            spriteRenderer.color = Color.white;
+            copy_timeBeingDamaged = timeBeingDamaged;
+            isBeingDamaged = false;
+        }
+    }
+
+    public static void TakeDamage(uint damage)
+    {
+        if (copy_currentLife > 0)
+            copy_currentLife--;
+
+        PlayerScore.ReduceScore(isPlayerAtZero(), damage);
+        isBeingDamaged = true;
+    }
+
+    public static void Heal() //Para gotas azules...
+    {
+        if (copy_currentLife < copy_maxLife)
+            copy_currentLife++;
     }
 
     public static void SetLifeNewLevel()
     {
-        maxLife++;
-        currentLife = maxLife;
+        copy_maxLife++;
+        copy_currentLife = copy_maxLife;
+
+        Debug.Log("Max: " + copy_maxLife + " | Current: " + copy_currentLife);
     }
 
-    public static uint GetHearts()
+    private static void ResetCurrentValues()
     {
-        return currentLife;
+        copy_currentLife = copy_maxLife;
+    }
+
+    public static bool isPlayerAtZero() 
+    {
+        return copy_currentLife == 0;
     }
 }

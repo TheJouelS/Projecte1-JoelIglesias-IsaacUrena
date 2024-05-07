@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c9ef97c25a3c8db4992a73969249de7d
+guid: e340f47fde428bc4bb0bf5c36128dbf2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,106 +97,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: throw axe attack -Sheet_0
+      name: Player1-WalkSheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48937b3f365897546a5d0a316f7befd0
-      internalID: -1354619361
+      spriteID: 4a52a947f46731e41b6d190f24d9f7f1
+      internalID: 729247700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: throw axe attack -Sheet_1
+      name: Player1-WalkSheet_1
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92b789c1d9d5aa843916ab4658030028
-      internalID: -1082146886
+      spriteID: 29bf5c7e02913554bb52f1c430e0be19
+      internalID: 931909798
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: throw axe attack -Sheet_2
+      name: Player1-WalkSheet_2
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6bdf1582555e1741a0745c85647f41a
-      internalID: 1699874936
+      spriteID: 932dfc3ae5b398b43bbd4003b02cd5ed
+      internalID: -1848977065
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: throw axe attack -Sheet_3
+      name: Player1-WalkSheet_3
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cad331560f5fd3c4d94ae54155ef3d71
-      internalID: 1435046296
+      spriteID: 5bc930d022ff66a47bc2a6021f1a0435
+      internalID: -1313949519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: throw axe attack -Sheet_7
+      name: Player1-WalkSheet_4
       rect:
         serializedVersion: 2
-        x: 504
-        y: 7
-        width: 8
-        height: 16
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d318140aea0ba2428d2620c0ab2b878
-      internalID: 451563897
+      spriteID: 9e0dedb70e31652418e568d85a3ac26d
+      internalID: 679099861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1-WalkSheet_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6655806484d9ba4458918cf8c8cadf04
+      internalID: 1073048227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1-WalkSheet_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2830042eb4132f142a1ab65eb4732932
+      internalID: 909520760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1-WalkSheet_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d66a8fee98643c140b1c5aa8a95c28f3
+      internalID: -1972682262
       vertices: []
       indices: 
       edges: []
@@ -212,16 +275,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      throw axe attack -Sheet_0: -1354619361
-      throw axe attack -Sheet_1: -1082146886
-      throw axe attack -Sheet_2: 1699874936
-      throw axe attack -Sheet_3: 1435046296
-      throw axe attack -Sheet_4: 1879119096
-      throw axe attack -Sheet_5: -1701034290
-      throw axe attack -Sheet_6: -940966229
-      throw axe attack -Sheet_7: 451563897
-      throw axe attack -Sheet_8: 1561091959
-      throw axe attack -Sheet_9: -1490376331
+      Player1-WalkSheet_0: 729247700
+      Player1-WalkSheet_1: 931909798
+      Player1-WalkSheet_2: -1848977065
+      Player1-WalkSheet_3: -1313949519
+      Player1-WalkSheet_4: 679099861
+      Player1-WalkSheet_5: 1073048227
+      Player1-WalkSheet_6: 909520760
+      Player1-WalkSheet_7: -1972682262
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

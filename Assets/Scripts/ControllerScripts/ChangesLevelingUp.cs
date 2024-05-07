@@ -37,7 +37,10 @@ public class ChangesLevelingUp : MonoBehaviour
         EvolveCharacter(false);
 
         //We reset the score
-        PlayerScore.SetScore(true);
+        PlayerScore.ReduceScore(true);
+
+        //We increase maxLife and currentLife
+        PlayerHealth.SetLifeNewLevel();
 
         //We reduce droplet cooldown time
         DropSpawner.ReduceSpawnCooldown();

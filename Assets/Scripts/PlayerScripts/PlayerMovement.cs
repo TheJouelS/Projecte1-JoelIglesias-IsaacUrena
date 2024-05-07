@@ -7,22 +7,23 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] string horizontalInputAxisName = "Horizontal";
     [SerializeField] string buttonDownName = "Jump";
-    [SerializeField] string playerWalkingTag = "isWalking";
+    [SerializeField] string playerWalkingTag = "isWalking", playerJumpingTag = "isJumping";
 
+    public SpriteRenderer playerSprite;
+    public Animator Animator;
     public NotifyOnCollision NotifyCollisionGround;
-    public float Speed = 4.5f, JumpForce = 20f;
+    public float Speed = 4.5f, JumpForce = 20f, jumpCooldown;
 
+    private float timer;
     private bool isOnGround;
     private Rigidbody2D rgb;
     private bool lookingRight = false;
-    private Animator Animator;
-    private SpriteRenderer spr;
 
     private void Start()
     {
         rgb = GetComponent<Rigidbody2D>();
-        Animator = GetComponent<Animator>();
-        spr = GetComponent<SpriteRenderer>();
+        timer = jumpCooldown;
+
         NotifyCollisionGround.NotifyCollisionEnterGround += SetGroundCollisionEnter;
         NotifyCollisionGround.NotifyCollisionExitGround += SetGroundCollisionExit;
     }
@@ -50,24 +51,30 @@ public class PlayerMovement : MonoBehaviour
         if ((lookingRight && horizontalInput < 0) || (!lookingRight && horizontalInput > 0))
         {
             lookingRight = !lookingRight;
-            spr.flipX = lookingRight;
+            playerSprite.flipX = !lookingRight;
         }
     }
 
     private void ProcessJump()
     {
-        if (Input.GetButtonDown(buttonDownName) && isOnGround)
+        if (timer > 0f)
+            timer -= Time.deltaTime;
+
+        if (Input.GetButtonDown(buttonDownName) && isOnGround && timer <= 0f)
             rgb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
     }
 
     void SetGroundCollisionEnter()
     {
         isOnGround = true;
+        timer = jumpCooldown;
+        Animator.SetBool(playerJumpingTag, false);
     }
 
     void SetGroundCollisionExit()
     {
         isOnGround = false;
+        Animator.SetBool(playerJumpingTag, true);
     }
 
     public bool GetPlayerIsOnGround()

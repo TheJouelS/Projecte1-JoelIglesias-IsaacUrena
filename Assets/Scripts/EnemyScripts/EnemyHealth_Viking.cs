@@ -6,9 +6,8 @@ using UnityEngine;
 public class EnemyHealth_Viking : MonoBehaviour
 {
     public uint currentLife;
-    public uint maxLife;
     public string vikingDamagedTag, vikingDiedTag;
-
+    public bool isDying = false;
     private Animator animator;
 
     private void Start()
@@ -23,20 +22,20 @@ public class EnemyHealth_Viking : MonoBehaviour
 
     public void TakeDamage(uint damage)
     {
-        if (currentLife > 0)
-            currentLife -= damage;
+        if (damage < currentLife) currentLife -= damage;
+        else currentLife = 0;
 
-        if (currentLife == 0)
-            Death();
-        else
-            animator.SetTrigger(vikingDamagedTag);
+        if (currentLife <= 0) Death();
+        else animator.SetTrigger(vikingDamagedTag);
     }
 
     private void Death()
     {
+        isDying = true;
         animator.SetTrigger(vikingDiedTag);
     }
 
+    //It's called through Animator:
     private void Disappear()
     {
         Destroy(gameObject);

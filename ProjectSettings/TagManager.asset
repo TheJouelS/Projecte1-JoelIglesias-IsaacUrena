@@ -11,6 +11,8 @@ TagManager:
   - RightSideCollision
   - PlayerBoddy
   - Viking_Enemy
+  - PlayerBoddy_IsAttacking
+  - GroundToAxe
   layers:
   - Default
   - TransparentFX
