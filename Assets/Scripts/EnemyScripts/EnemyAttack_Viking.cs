@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAttack_Viking : MonoBehaviour
 {
     [SerializeField] Transform playerPosition;
-    public bool Debug = false;
+    public bool DebugEditor = false;
     public AxeSpawner axeSpawner;
     public VikingAxe_NotifyOnCollision NotifyCollisionAxe;
     public string attackingTagAnimation = "isAttacking";
@@ -44,8 +44,13 @@ public class EnemyAttack_Viking : MonoBehaviour
     //It's called through Animator:
     private void PlayerTakesDamage()
     {
-        uint damageToPlayer = (uint) PlayerLevel.GetPlayerLevel();
-        PlayerHealth.TakeDamage(damageToPlayer);
+        RaycastHit2D raycastHit2D;
+        raycastHit2D = Physics2D.Raycast(transform.position, transform.right * 5f);
+        if (raycastHit2D.collider != null) //raycastHit2D.collider.CompareTag("PlayerBoddy"))
+        {
+            uint damageToPlayer = (uint) PlayerLevel.GetPlayerLevel();
+            PlayerHealth.TakeDamage(damageToPlayer);
+        }
     }
 
     public void CallToStopThrowingAnimation()
@@ -56,7 +61,7 @@ public class EnemyAttack_Viking : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        if (!Debug)
+        if (!DebugEditor)
             return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, rangedAttack);  
