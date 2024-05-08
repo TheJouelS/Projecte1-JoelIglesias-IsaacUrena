@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class EnemyAttack_Viking : MonoBehaviour
 {
+    [SerializeField] LayerMask PlayerBoddyLayer;
     [SerializeField] Transform playerPosition;
     public bool DebugEditor = false;
     public AxeSpawner axeSpawner;
     public VikingAxe_NotifyOnCollision NotifyCollisionAxe;
     public string attackingTagAnimation = "isAttacking";
-    public float rangedAttack;
+    public float rangedAttack, hitDistance;
 
     private Animator animator;
 
@@ -45,8 +46,8 @@ public class EnemyAttack_Viking : MonoBehaviour
     private void PlayerTakesDamage()
     {
         RaycastHit2D raycastHit2D;
-        raycastHit2D = Physics2D.Raycast(transform.position, transform.right * 5f);
-        if (raycastHit2D.collider != null) //raycastHit2D.collider.CompareTag("PlayerBoddy"))
+
+        if (raycastHit2D = Physics2D.Raycast(transform.position, transform.right * transform.localScale.normalized.x, hitDistance, PlayerBoddyLayer))
         {
             uint damageToPlayer = (uint) PlayerLevel.GetPlayerLevel();
             PlayerHealth.TakeDamage(damageToPlayer);

@@ -704,12 +704,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94a4ba07eb84b4944b04eda02696f6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerBoddyLayer:
+    serializedVersion: 2
+    m_Bits: 64
   playerPosition: {fileID: 1544712066}
-  Debug: 1
+  DebugEditor: 1
   axeSpawner: {fileID: 928343983}
   NotifyCollisionAxe: {fileID: 1330901868}
   attackingTagAnimation: isAttacking
   rangedAttack: 6
+  hitDistance: 0.5
 --- !u!114 &382281443
 MonoBehaviour:
   m_ObjectHideFlags: 0
