@@ -9,7 +9,7 @@ public class PlayerLevel : MonoBehaviour
     private static int playerLevel = 1;
     private static int maxLevel = 18;
     private static int nextGoal;
-    private static int scoringMargin = 5;
+    private static int scoringMargin = 5; //USAR PARA PONER NIVEL!!!!!!!!!!!!!!!!!! en nextGoal (en vez del 1 hardcodeado que hay)
 
     private void Start()
     {
@@ -33,7 +33,7 @@ public class PlayerLevel : MonoBehaviour
         if (!firstTime)
             playerLevel++;
 
-        nextGoal = playerLevel * scoringMargin; //This result serves to increase the difference in points between one level and another, increasingly greater
+        nextGoal = playerLevel * 1; //This result serves to increase the difference in points between one level and another, increasingly greater
     }
 
     public static int GetNextGoal()
