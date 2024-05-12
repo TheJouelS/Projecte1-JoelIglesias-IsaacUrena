@@ -17,6 +17,7 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
         AttackColliderController_Player.setDamage = hitDamage;
+        timeNextAttack = 0f;
     }
 
     private void Update()

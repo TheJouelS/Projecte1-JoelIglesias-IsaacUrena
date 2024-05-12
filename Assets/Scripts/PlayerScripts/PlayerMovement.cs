@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float timer;
     private bool isOnGround;
     private Rigidbody2D rgb;
-    private bool lookingRight = false;
+    private bool lookingRight = true;
 
     private void Start()
     {

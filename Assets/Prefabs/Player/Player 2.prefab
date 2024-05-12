@@ -276,6 +276,7 @@ Transform:
   - {fileID: 5607992019987629376}
   - {fileID: 6702424702431774261}
   - {fileID: 1059898320660233285}
+  - {fileID: 6592071314212279879}
   - {fileID: 7096707481250884783}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -373,7 +374,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5607992019987629376}
   - component: {fileID: 8978583523419766262}
-  - component: {fileID: 1142072395582801082}
   m_Layer: 6
   m_Name: PlayerBoddy
   m_TagString: PlayerBoddy
@@ -425,7 +425,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.036378205, y: -0.36058974}
@@ -441,20 +441,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.1237578, y: 2.4788203}
   m_EdgeRadius: 0
---- !u!114 &1142072395582801082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3862661970390803844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53539f02f66ea884f8ebdbd832fcb0dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LeftTagCollision: LeftSideCollision
-  RightTagCollision: RightSideCollision
 --- !u!1 &4738551331320010155
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,6 +518,98 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.0754485, y: 2.4788203}
   m_EdgeRadius: 0
+--- !u!1 &6196857842393935020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6592071314212279879}
+  - component: {fileID: 3582130523719650477}
+  - component: {fileID: 8896458830253521772}
+  m_Layer: 0
+  m_Name: SideCollisionDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6592071314212279879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196857842393935020}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2918501156525223227}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &3582130523719650477
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196857842393935020}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.036378205, y: -0.36058974}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.2, y: 3.2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.1237578, y: 2.4788203}
+  m_EdgeRadius: 0
+--- !u!114 &8896458830253521772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196857842393935020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53539f02f66ea884f8ebdbd832fcb0dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftTagCollision: LeftSideCollision
+  RightTagCollision: RightSideCollision
 --- !u!1 &7487033229111382105
 GameObject:
   m_ObjectHideFlags: 0
