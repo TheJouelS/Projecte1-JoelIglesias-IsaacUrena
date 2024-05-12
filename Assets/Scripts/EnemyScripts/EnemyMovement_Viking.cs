@@ -65,7 +65,8 @@ public class EnemyMovement_Viking : MonoBehaviour
         collidedWithPlayer = false;
     }
 
-    private void IsTakingDamage() //It's called from the Animator
+    //It's called through Animator:
+    private void IsTakingDamage()
     {
         if (direction.x < 0f)
             transform.position = transform.position + Vector3.right * impulseDamage;
@@ -73,8 +74,9 @@ public class EnemyMovement_Viking : MonoBehaviour
             transform.position = transform.position + Vector3.left * impulseDamage;
     }
 
-    private void IsDying() //It's called from the Animator
+    private void IsDying()
     {
+        IsTakingDamage();
         isDying = true;
     }
 }

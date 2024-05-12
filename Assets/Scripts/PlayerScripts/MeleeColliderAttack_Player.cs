@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeColliderAttack_Player : MonoBehaviour
 {
-    public string enemyTag = "Viking_Enemy"; //Luego irá el ángel
+    public string enemyTag = "Viking_Enemy"; //El de Angel no hace falta, hace la misma función que vikingo
     
     public static uint damage;
     private static bool attacked = false;
@@ -20,7 +20,7 @@ public class MeleeColliderAttack_Player : MonoBehaviour
             if (!attacked)
             {
                 attacked = true;
-                collision.gameObject.GetComponent<EnemyHealth_Viking>().TakeDamage(damage);
+                //collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
             }
     }
 

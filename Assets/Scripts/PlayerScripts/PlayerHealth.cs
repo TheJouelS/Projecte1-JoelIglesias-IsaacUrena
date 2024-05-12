@@ -15,14 +15,12 @@ public class PlayerHealth : MonoBehaviour
     private static uint copy_currentLife;
     private static uint copy_maxLife;
     private static float copy_timeBeingDamaged;
-    private static Color normalColor;
 
     private void Start()
     {
         copy_currentLife = currentLife;
         copy_maxLife = maxLife;
         copy_timeBeingDamaged = timeBeingDamaged;
-        normalColor = spriteRenderer.color;
     }
 
     private void Update()

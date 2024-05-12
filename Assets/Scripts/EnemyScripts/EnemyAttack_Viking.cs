@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class EnemyAttack_Viking : MonoBehaviour
@@ -10,9 +11,11 @@ public class EnemyAttack_Viking : MonoBehaviour
     public AxeSpawner axeSpawner;
     public VikingAxe_NotifyOnCollision NotifyCollisionAxe;
     public string attackingTagAnimation = "isAttacking";
-    public float rangedAttack, hitDistance;
+    public float rangedAttack, hitDistance, timerCooldown = 0.25f;
 
     private Animator animator;
+    private float timer;
+    private bool canCount = false;
 
     void Start()
     {
@@ -20,16 +23,28 @@ public class EnemyAttack_Viking : MonoBehaviour
 
         NotifyCollisionAxe.NotifyCollisionEnter += RunAttack;
         NotifyCollisionAxe.NotifyCollisionExit += ExitAttack;
+
+        timer = timerCooldown;
     }
 
     private void Update()
     {
         Vector3 direction = playerPosition.position - transform.position;
-        
+
         if (direction.magnitude <= rangedAttack)
             axeSpawner.playerIsInRange = true;
         else
             axeSpawner.playerIsInRange = false;
+
+        if (canCount)
+            timer -= Time.deltaTime;
+
+        if (timer <= 0f)
+        {
+            animator.SetBool(attackingTagAnimation, false);
+            timer = timerCooldown;
+            canCount = false;
+        }
     }
 
     private void RunAttack()
@@ -39,7 +54,7 @@ public class EnemyAttack_Viking : MonoBehaviour
 
     private void ExitAttack()
     {
-        animator.SetBool(attackingTagAnimation, false);
+        canCount = true;
     }
 
     //It's called through Animator:

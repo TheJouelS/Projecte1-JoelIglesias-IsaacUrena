@@ -8,7 +8,7 @@ public class AxeSpawner : MonoBehaviour
 {
     [SerializeField] Animator animator;
     [SerializeField] GameObject axeObject;
-    [SerializeField] EnemyHealth_Viking enemyHealth_Viking;
+    [SerializeField] EnemyHealth enemyHealth_Viking;
     [SerializeField] float timeBetweenAxes;
     [SerializeField] string throwingTagAnimation = "isThrowing";
 

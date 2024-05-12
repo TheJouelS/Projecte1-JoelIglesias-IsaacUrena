@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 458565253928477450}
   m_Layer: 0
   m_Name: AttackCollider_Player
-  m_TagString: Untagged
+  m_TagString: ColliderPlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

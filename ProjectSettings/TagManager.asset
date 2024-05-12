@@ -13,6 +13,7 @@ TagManager:
   - Viking_Enemy
   - PlayerBoddy_IsAttacking
   - GroundToAxe
+  - ColliderPlayerAttack
   layers:
   - Default
   - TransparentFX
