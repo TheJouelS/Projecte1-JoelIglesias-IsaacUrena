@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -19,10 +20,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rgb;
     private bool lookingRight = true;
 
+    private static Transform copy_playerPosition;
+
     private void Start()
     {
         rgb = GetComponent<Rigidbody2D>();
         timer = jumpCooldown;
+        copy_playerPosition = transform;
 
         NotifyCollisionGround.NotifyCollisionEnterGround += SetGroundCollisionEnter;
         NotifyCollisionGround.NotifyCollisionExitGround += SetGroundCollisionExit;
@@ -44,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
             Animator.SetBool(playerWalkingTag, true);
         else
             Animator.SetBool(playerWalkingTag, false);
+
+        copy_playerPosition = transform;
     }
 
     private void ManageOrientation(float horizontalInput)
@@ -80,5 +86,10 @@ public class PlayerMovement : MonoBehaviour
     public bool GetPlayerIsOnGround()
     {
         return isOnGround;
+    }
+
+    public static Transform GetPlayerPosition()
+    {
+        return copy_playerPosition;
     }
 }

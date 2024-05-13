@@ -6,14 +6,13 @@ using UnityEngine;
 
 public class EnemyMovement_Viking : MonoBehaviour
 {
-    [SerializeField] Transform playerPosition;
-
     public AxeSpawner axeSpawner;
     public VikingAxe_NotifyOnCollision NotifyCollisionAxe;
     public float speed;
     public float impulseDamage;
     public string walkingTagAnimation = "isWalking";
 
+    private Transform playerPosition;
     private Animator animator;
     private Vector3 direction = Vector3.zero;
     private bool collidedWithPlayer = false;
@@ -26,10 +25,13 @@ public class EnemyMovement_Viking : MonoBehaviour
 
         NotifyCollisionAxe.NotifyCollisionEnter += StopMoving;
         NotifyCollisionAxe.NotifyCollisionExit += KeepMoving;
+
+        SetPlayerPosition();
     }
 
     void Update()
     {
+        SetPlayerPosition();
         ProcessMovement();
         ManageOrientation();
     }
@@ -44,6 +46,11 @@ public class EnemyMovement_Viking : MonoBehaviour
                 transform.position = transform.position + direction.normalized * speed * Time.deltaTime;
             }
         }
+    }
+
+    private void SetPlayerPosition()
+    {
+        playerPosition = PlayerMovement.GetPlayerPosition();
     }
 
     private void ManageOrientation()

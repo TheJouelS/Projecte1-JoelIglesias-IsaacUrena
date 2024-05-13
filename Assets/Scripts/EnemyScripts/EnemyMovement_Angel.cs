@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class EnemyMovement_Angel : MonoBehaviour
 {
-    [SerializeField] Transform playerPosition;
-
     public float speed, limitedPosition_Y, impulseDamage;
     public string playerTag = "PlayerBoddy", walkingTagAnimation = "isWalking";
 
+    private Transform playerPosition;
     private SpriteRenderer spr;
     private Vector3 direction = Vector3.zero;
     private bool collidedWithPlayer = false;
@@ -21,11 +20,18 @@ public class EnemyMovement_Angel : MonoBehaviour
         spr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         animator.SetBool(walkingTagAnimation, true);
+        SetPlayerPosition();
     }
 
     void Update()
     {
+        SetPlayerPosition();
         ProcessMovement();
+    }
+
+    private void SetPlayerPosition()
+    {
+        playerPosition = PlayerMovement.GetPlayerPosition();
     }
 
     private void ProcessMovement()

@@ -6,13 +6,13 @@ using UnityEngine;
 public class EnemyAttack_Viking : MonoBehaviour
 {
     [SerializeField] LayerMask PlayerBoddyLayer;
-    [SerializeField] Transform playerPosition;
     public bool DebugEditor = false;
     public AxeSpawner axeSpawner;
     public VikingAxe_NotifyOnCollision NotifyCollisionAxe;
     public string attackingTagAnimation = "isAttacking";
     public float rangedAttack, hitDistance, timerCooldown = 0.25f;
 
+    private Transform playerPosition;
     private Animator animator;
     private float timer;
     private bool canCount = false;
@@ -24,17 +24,14 @@ public class EnemyAttack_Viking : MonoBehaviour
         NotifyCollisionAxe.NotifyCollisionEnter += RunAttack;
         NotifyCollisionAxe.NotifyCollisionExit += ExitAttack;
 
+        SetPlayerPosition();
         timer = timerCooldown;
     }
 
     private void Update()
     {
-        Vector3 direction = playerPosition.position - transform.position;
-
-        if (direction.magnitude <= rangedAttack)
-            axeSpawner.playerIsInRange = true;
-        else
-            axeSpawner.playerIsInRange = false;
+        SetPlayerPosition();
+        PlayerIsInRange();
 
         if (canCount)
             timer -= Time.deltaTime;
@@ -45,6 +42,20 @@ public class EnemyAttack_Viking : MonoBehaviour
             timer = timerCooldown;
             canCount = false;
         }
+    }
+    private void SetPlayerPosition()
+    {
+        playerPosition = PlayerMovement.GetPlayerPosition();
+    }
+
+    private void PlayerIsInRange()
+    {
+        Vector3 direction = playerPosition.position - transform.position;
+
+        if (direction.magnitude <= rangedAttack)
+            axeSpawner.playerIsInRange = true;
+        else
+            axeSpawner.playerIsInRange = false;
     }
 
     private void RunAttack()

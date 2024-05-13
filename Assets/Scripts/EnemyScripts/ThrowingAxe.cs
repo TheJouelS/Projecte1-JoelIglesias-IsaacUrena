@@ -7,17 +7,20 @@ using UnityEngine;
 public class ThrowingAxe : MonoBehaviour
 {
     [SerializeField] AxeSpawner axeSpawner;
-    [SerializeField] Transform playerPosition, spawnerPosition;
+    [SerializeField] Transform spawnerPosition;
     [SerializeField] string playerTag, outsideMap;
     [SerializeField] float speed, rotationSpeed;
     [SerializeField] uint damageToPlayer;
     [SerializeField] Vector3 orientation;
 
+    private Transform playerPosition;
     private Vector3 direction;
     private Rigidbody2D rgb;
 
     public void OnEnable()
     {
+        SetPlayerPosition();
+
         axeSpawner.RunThrowingAnimation();
         axeSpawner.axeIsReady = false;
 
@@ -32,6 +35,11 @@ public class ThrowingAxe : MonoBehaviour
     {
         transform.position = transform.position + direction.normalized * speed * Time.deltaTime;
         transform.Rotate(rotationSpeed * orientation * Time.deltaTime);
+    }
+
+    private void SetPlayerPosition()
+    {
+        playerPosition = PlayerMovement.GetPlayerPosition();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
