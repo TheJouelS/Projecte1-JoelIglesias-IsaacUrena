@@ -7,7 +7,6 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private uint currentLife, maxLife;
     [SerializeField] private float timeBeingDamaged;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -18,9 +17,12 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        copy_currentLife = currentLife;
-        copy_maxLife = maxLife;
-        copy_timeBeingDamaged = timeBeingDamaged;
+        if (PlayerLevel.GetPlayerLevel() == 1)
+        {
+            copy_maxLife = (uint)PlayerLevel.GetPlayerLevel() + 2;
+            copy_currentLife = copy_maxLife;
+            copy_timeBeingDamaged = timeBeingDamaged;
+        }
     }
 
     private void Update()
@@ -46,16 +48,16 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public static void TakeDamage(uint damage)
+    public static void TakeDamage(uint damage, bool itIsFromAnAxe = false)
     {
-        if (copy_currentLife > 0)
+        if (copy_currentLife > 0 && !itIsFromAnAxe)
             copy_currentLife--;
 
         PlayerScore.ReduceScore(isPlayerAtZero(), damage);
         isBeingDamaged = true;
     }
 
-    public static void Heal() //Para gotas azules...
+    public static void Heal() //Para gotas blancas...
     {
         if (copy_currentLife < copy_maxLife)
             copy_currentLife++;

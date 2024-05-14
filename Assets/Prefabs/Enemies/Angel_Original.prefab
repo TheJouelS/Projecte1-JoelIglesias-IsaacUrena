@@ -141,7 +141,7 @@ MonoBehaviour:
   playerBoddyTag: PlayerBoddy
   timerCooldown: 0.25
   NotifyCollisionPlayer: {fileID: 276533133460438817}
-  damageToThePlayer: 3
+  damageToPlayerRestValue: 1
 --- !u!61 &8802274379136618209
 BoxCollider2D:
   m_ObjectHideFlags: 0

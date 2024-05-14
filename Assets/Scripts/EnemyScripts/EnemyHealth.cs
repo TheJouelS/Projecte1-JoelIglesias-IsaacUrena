@@ -66,6 +66,11 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        EnemySpawner.enemyCounter--;
+    }
+
     //It's called through Animator:
     private void Disappear()
     {

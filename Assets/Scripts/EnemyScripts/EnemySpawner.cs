@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Main Features")]
     [SerializeField] List<GameObject> enemyList;
     public float spawnCooldown, decrementCooldown, posX;
+    public int maxEnemiesValue;
 
     [Header ("Viking Coordinates")]
     public float v_posY;
@@ -19,8 +20,11 @@ public class EnemySpawner : MonoBehaviour
     private float timer;
     private static bool canDecrementCooldown = false;
 
+    public static int enemyCounter;
+
     void Start()
     {
+        enemyCounter = 0;
         timer = spawnCooldown;
     }
 
@@ -34,8 +38,13 @@ public class EnemySpawner : MonoBehaviour
 
         if (timer <= 0f)
         {
-            Spawn();
-            timer = spawnCooldown;
+            if (enemyCounter < maxEnemiesValue)
+            {
+                Spawn();
+                timer = spawnCooldown;
+
+                enemyCounter++;
+            }
         }
     }
 

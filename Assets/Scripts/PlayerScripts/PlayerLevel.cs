@@ -46,7 +46,7 @@ public class PlayerLevel : MonoBehaviour
         return playerLevel;
     }
 
-    public static int GetMaxLevel() //Para bonus extras y enemigos fuertes
+    public static int GetMaxLevel()
     {
         return maxLevel;
     }

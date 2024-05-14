@@ -10,7 +10,7 @@ public class ThrowingAxe : MonoBehaviour
     [SerializeField] Transform spawnerPosition;
     [SerializeField] string playerTag, outsideMap;
     [SerializeField] float speed, rotationSpeed;
-    [SerializeField] uint damageToPlayer;
+    [SerializeField] uint damageToPlayer = 10;
     [SerializeField] Vector3 orientation;
 
     private Transform playerPosition;
@@ -46,7 +46,7 @@ public class ThrowingAxe : MonoBehaviour
     {
         if (collision.CompareTag(playerTag))
         {
-            PlayerHealth.TakeDamage(damageToPlayer);
+            PlayerHealth.TakeDamage(damageToPlayer, true);
             gameObject.SetActive(false);
         }
 

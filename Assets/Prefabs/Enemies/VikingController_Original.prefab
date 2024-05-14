@@ -353,7 +353,7 @@ MonoBehaviour:
   outsideMap: GroundToAxe
   speed: 4
   rotationSpeed: 600
-  damageToPlayer: 1
+  damageToPlayer: 10
   orientation: {x: 0, y: 0, z: -1}
 --- !u!1 &9218613265400559079
 GameObject:
@@ -485,7 +485,7 @@ MonoBehaviour:
   rangedAttack: 6
   hitDistance: 0.5
   timerCooldown: 0.25
-  damageToThePlayer: 1
+  damageToPlayerRestValue: 3
 --- !u!114 &1489739495749118185
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class EnemyAttack_Viking : MonoBehaviour
     public VikingAxe_NotifyOnCollision NotifyCollisionAxe;
     public string attackingTagAnimation = "isAttacking";
     public float rangedAttack, hitDistance, timerCooldown = 0.25f;
-    public uint damageToThePlayer = 1;
+    public uint damageToPlayerRestValue = 3;
 
     private Transform playerPosition;
     private Animator animator;
@@ -27,6 +27,9 @@ public class EnemyAttack_Viking : MonoBehaviour
 
         SetPlayerPosition();
         timer = timerCooldown;
+
+        if (PlayerLevel.GetPlayerLevel() >= damageToPlayerRestValue * 2)
+            damageToPlayerRestValue = (uint)PlayerLevel.GetPlayerLevel() - damageToPlayerRestValue;
     }
 
     private void Update()
@@ -76,7 +79,7 @@ public class EnemyAttack_Viking : MonoBehaviour
 
         if (raycastHit2D = Physics2D.Raycast(transform.position, transform.right * transform.localScale.normalized.x, hitDistance, PlayerBoddyLayer))
         {
-            PlayerHealth.TakeDamage(damageToThePlayer);
+            PlayerHealth.TakeDamage(damageToPlayerRestValue);
         }
     }
 

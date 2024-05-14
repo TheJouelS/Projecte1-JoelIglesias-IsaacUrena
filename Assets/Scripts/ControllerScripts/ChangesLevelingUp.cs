@@ -37,7 +37,7 @@ public class ChangesLevelingUp : MonoBehaviour
         EvolveCharacter(false);
 
         //We reset the score
-        PlayerScore.ReduceScore(true);
+        PlayerScore.ResetScore();
 
         //We increase maxLife and currentLife
         PlayerHealth.SetLifeNewLevel();

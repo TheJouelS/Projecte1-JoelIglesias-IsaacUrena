@@ -917,8 +917,9 @@ MonoBehaviour:
   - {fileID: 3369126645622652865, guid: 8237cd28ad428c1498c6c5f5e9e9f481, type: 3}
   - {fileID: 5694117043557481175, guid: e9dc977f306f39e4a8c2d2cae3cd9f3c, type: 3}
   spawnCooldown: 15
-  decrementCooldown: 1
+  decrementCooldown: 0.75
   posX: -14
+  maxEnemiesValue: 50
   v_posY: -3.085
   a_posY: 1
 --- !u!4 &513010086
