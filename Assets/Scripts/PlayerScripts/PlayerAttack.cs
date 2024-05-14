@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private uint hitDamage;
+    [SerializeField] private uint hitDamage; //Para el ataque de suelo
     [SerializeField] private float timeBetweenHit;
     [SerializeField] private GameObject playerBoddy;
 
@@ -16,7 +16,6 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        AttackColliderController_Player.setDamage = hitDamage;
         timeNextAttack = 0f;
     }
 
@@ -34,6 +33,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Hit()
     {
+        AttackColliderController_Player.setDamage = (uint) PlayerLevel.GetPlayerLevel();
         animator.SetTrigger(attackingTagAnimation); //This will active the AttackColliderController_Player Script functions
     }
 }

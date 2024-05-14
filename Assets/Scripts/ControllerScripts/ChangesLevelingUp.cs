@@ -45,6 +45,9 @@ public class ChangesLevelingUp : MonoBehaviour
         //We reduce droplet cooldown time
         DropSpawner.ReduceSpawnCooldown();
 
+        //We reduce the cooldown time of the enemy spawner
+        EnemySpawner.CanDecrementCooldown();
+
         //We activate the camera animation
         MainCameraMovement.RunAnimation();
 

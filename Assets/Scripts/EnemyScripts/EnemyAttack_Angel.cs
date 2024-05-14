@@ -7,6 +7,7 @@ public class EnemyAttack_Angel : MonoBehaviour
     public string attackingTagAnimation = "isAttacking", playerBoddyTag = "PlayerBoddy";
     public float timerCooldown = 0.25f;
     public Angel_NotifyOnCollisionAttack NotifyCollisionPlayer;
+    public uint damageToThePlayer = 3;
 
     private Animator animator;
     private float timer;
@@ -59,9 +60,6 @@ public class EnemyAttack_Angel : MonoBehaviour
     private void PlayerTakesDamage()
     {
         if (isCollidingWithPlayer)
-        {
-            uint damageToPlayer = (uint)PlayerLevel.GetPlayerLevel() + 1;
-            PlayerHealth.TakeDamage(damageToPlayer);
-        }
+            PlayerHealth.TakeDamage(damageToThePlayer);
     }
 }

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6421185638015947123}
   - component: {fileID: 4069253279165341966}
-  - component: {fileID: 458565253928477450}
   m_Layer: 0
   m_Name: AttackCollider_Player
   m_TagString: ColliderPlayerAttack
@@ -68,19 +67,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.35}
   m_Size: {x: 2, y: 2}
   m_Direction: 1
---- !u!114 &458565253928477450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451131834378106135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3c9267add893104e9d8afb3f0f3f60e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyTag: Viking_Enemy
 --- !u!1 &491273318151879458
 GameObject:
   m_ObjectHideFlags: 0

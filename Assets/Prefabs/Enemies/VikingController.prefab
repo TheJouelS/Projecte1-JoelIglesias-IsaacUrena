@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 3369126645622652865}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5203228, y: 1.1756376, z: 0.21784088}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -172,7 +172,7 @@ MonoBehaviour:
   animator: {fileID: 5165227719291802251}
   axeObject: {fileID: 9151156271295985800}
   enemyHealth_Viking: {fileID: 1489739495749118185}
-  timeBetweenAxes: 3
+  timeBetweenAxes: 7
   throwingTagAnimation: isThrowing
   axeIsReady: 1
   playerIsInRange: 0
@@ -205,7 +205,7 @@ Transform:
   m_GameObject: {fileID: 9151156271295985800}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.37582004, w: -0.9266927}
-  m_LocalPosition: {x: -11.214522, y: -4.4275374, z: -0.21784088}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -348,7 +348,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axeSpawner: {fileID: 8292881608947553834}
-  playerPosition: {fileID: 0}
   spawnerPosition: {fileID: 290340298853235592}
   playerTag: PlayerBoddy
   outsideMap: GroundToAxe
@@ -387,7 +386,7 @@ Transform:
   m_GameObject: {fileID: 9218613265400559079}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.420322, y: -4.2196374, z: -0.21784088}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -459,7 +458,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e26a0b8aa5f37d4c9e542bea1594d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPosition: {fileID: 0}
   axeSpawner: {fileID: 8292881608947553834}
   NotifyCollisionAxe: {fileID: 4042915820399220513}
   speed: 1.8
@@ -480,7 +478,6 @@ MonoBehaviour:
   PlayerBoddyLayer:
     serializedVersion: 2
     m_Bits: 64
-  playerPosition: {fileID: 0}
   DebugEditor: 1
   axeSpawner: {fileID: 8292881608947553834}
   NotifyCollisionAxe: {fileID: 4042915820399220513}
@@ -500,7 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36307f9ba3b82e241aa2aab5dceb81ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLife: 2
+  currentLife: 13
   damagedTag: isDamaged
   diedTag: isDead
   colliderPlayerAttack: ColliderPlayerAttack

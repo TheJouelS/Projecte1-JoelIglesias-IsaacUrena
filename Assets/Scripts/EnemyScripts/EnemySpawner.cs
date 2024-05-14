@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Main Features")]
     [SerializeField] List<GameObject> enemyList;
-    public float spawnCooldown, posX;
+    public float spawnCooldown, decrementCooldown, posX;
 
     [Header ("Viking Coordinates")]
     public float v_posY;
@@ -16,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
     public float a_posY;
 
     private float timer;
+    private static bool canDecrementCooldown = false;
 
     void Start()
     {
@@ -24,6 +26,9 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        if (canDecrementCooldown)
+            SetCooldown();
+
         if (timer > 0)
             timer -= Time.deltaTime;
 
@@ -36,18 +41,42 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawn()
     {
-        int randomNum = Random.Range(1, 2);
-        var spawn = Instantiate(enemyList[randomNum]);
+        GameObject spawn = null;
 
-        // 1 for vikings --- 2 for angels:
-        if (randomNum == 1)
+        if (PlayerLevel.GetPlayerLevel() < 5 && PlayerLevel.GetPlayerLevel() > 1)
+        {
+            spawn = Instantiate(enemyList[0]);
             spawn.transform.position = new Vector3(posX, v_posY, 0);
-        else
-            spawn.transform.position = new Vector3(posX, a_posY, 0);
+        }
+        else if (PlayerLevel.GetPlayerLevel() >= 5)
+        {
+            int randomNum = Random.Range(0, 2);
+            spawn = Instantiate(enemyList[randomNum]);
 
-        spawn.transform.SetParent(this.transform);
+            //randomNum: 0 for vikings --- 1 for angels:
+            if (randomNum == 0)
+                spawn.transform.position = new Vector3(posX, v_posY, 0);
+            else
+                spawn.transform.position = new Vector3(posX, a_posY, 0);
+        }
 
-        //We change the X coordinate for the next spawn position
-        posX = -posX;
+        if (spawn != null)
+        {
+            spawn.transform.SetParent(this.transform);
+
+            //We change the X coordinate for the next spawn position
+            posX = -posX;
+        }
+    }
+
+    private void SetCooldown()
+    {
+        spawnCooldown -= decrementCooldown;
+        canDecrementCooldown = false;
+    }
+
+    public static void CanDecrementCooldown()
+    {
+        canDecrementCooldown = true;
     }
 }

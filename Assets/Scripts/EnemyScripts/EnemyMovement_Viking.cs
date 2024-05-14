@@ -27,6 +27,8 @@ public class EnemyMovement_Viking : MonoBehaviour
         NotifyCollisionAxe.NotifyCollisionExit += KeepMoving;
 
         SetPlayerPosition();
+
+        //animator.SetFloat("animSpeed", 0f);
     }
 
     void Update()

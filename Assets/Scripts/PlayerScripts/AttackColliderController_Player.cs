@@ -6,7 +6,7 @@ using UnityEngine;
 public class AttackColliderController_Player : MonoBehaviour
 {
     public Collider2D attackCollider, playerBoddy, playerBoddyWhenIsAttacking;
-    public static uint setDamage;
+    public static uint setDamage = 0;
 
     private void Start()
     {
@@ -26,12 +26,15 @@ public class AttackColliderController_Player : MonoBehaviour
         attackCollider.enabled = false;
         playerBoddyWhenIsAttacking.enabled = false;
         playerBoddy.enabled = true;
-
-        MeleeColliderAttack_Player.SetAttacked();
     }
 
     private void OnDestroy()
     {
         DisableAttackCollider();
+    }
+
+    public static uint GetMeleeDamage()
+    {
+        return setDamage;
     }
 }

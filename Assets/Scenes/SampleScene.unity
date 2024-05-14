@@ -900,7 +900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &513010085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -914,12 +914,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyList:
-  - {fileID: 0}
-  - {fileID: 0}
-  spawnCooldown: 0
-  posX: 0
-  v_posY: 0
-  a_posY: 0
+  - {fileID: 3369126645622652865, guid: fcb00eaa1abd4d345957797cbeb95fe5, type: 3}
+  - {fileID: 5694117043557481175, guid: 70d114fae94370543997d7ab2bacd46d, type: 3}
+  spawnCooldown: 15
+  decrementCooldown: 1
+  posX: -14
+  v_posY: -3.085
+  a_posY: 1
 --- !u!4 &513010086
 Transform:
   m_ObjectHideFlags: 0
@@ -1656,6 +1657,83 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1110090681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1110090682}
+  - component: {fileID: 1110090683}
+  m_Layer: 0
+  m_Name: Terremoto
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1110090682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110090681}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.68, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1110090683
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110090681}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.6212832}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 18.52935, y: 0.4864056}
+  m_EdgeRadius: 0
 --- !u!1 &1247021344
 GameObject:
   m_ObjectHideFlags: 0
@@ -2668,13 +2746,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Angel
       objectReference: {fileID: 0}
+    - target: {fileID: 5694117043557481175, guid: 70d114fae94370543997d7ab2bacd46d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5960128181929340300, guid: 70d114fae94370543997d7ab2bacd46d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.74
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 5960128181929340300, guid: 70d114fae94370543997d7ab2bacd46d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.04
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5960128181929340300, guid: 70d114fae94370543997d7ab2bacd46d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2731,11 +2813,11 @@ PrefabInstance:
       objectReference: {fileID: 1544712066}
     - target: {fileID: 2187420475982522800, guid: fcb00eaa1abd4d345957797cbeb95fe5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5203228
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 2187420475982522800, guid: fcb00eaa1abd4d345957797cbeb95fe5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1756376
+      value: -3.085
       objectReference: {fileID: 0}
     - target: {fileID: 2187420475982522800, guid: fcb00eaa1abd4d345957797cbeb95fe5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2777,10 +2859,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: VikingController
       objectReference: {fileID: 0}
+    - target: {fileID: 3369126645622652865, guid: fcb00eaa1abd4d345957797cbeb95fe5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3471011951961967571, guid: fcb00eaa1abd4d345957797cbeb95fe5, type: 3}
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 1544712066}
+    - target: {fileID: 3471011951961967571, guid: fcb00eaa1abd4d345957797cbeb95fe5, type: 3}
+      propertyPath: damageToThePlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584904966408363344, guid: fcb00eaa1abd4d345957797cbeb95fe5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2800,3 +2894,4 @@ SceneRoots:
   - {fileID: 6944279603830249618}
   - {fileID: 8913402137040299905}
   - {fileID: 513010086}
+  - {fileID: 1110090682}

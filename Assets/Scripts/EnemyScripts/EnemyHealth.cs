@@ -59,7 +59,7 @@ public class EnemyHealth : MonoBehaviour
         {
             if (collision.CompareTag(colliderPlayerAttack))
             {
-                TakeDamage(MeleeColliderAttack_Player.damage);
+                TakeDamage(AttackColliderController_Player.GetMeleeDamage());
                 canCount = true;
                 canTakeDame = false;
             }

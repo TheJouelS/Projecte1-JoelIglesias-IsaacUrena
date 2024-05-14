@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9049464712244005413
 Transform:
   m_ObjectHideFlags: 0
@@ -325,7 +325,6 @@ MonoBehaviour:
   - {fileID: 1647365866723968537}
   - {fileID: 4110460557280057564}
   - {fileID: 5103645695163077429}
-  - {fileID: 9049464712244005413}
   speed: 1.5
   namePlayerTag: Player
 --- !u!95 &9124924218383033657
