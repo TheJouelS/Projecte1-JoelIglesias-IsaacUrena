@@ -44,15 +44,21 @@ public class EnemyMovement_Viking : MonoBehaviour
         {
             if (!collidedWithPlayer && !isDying)
             {
-                direction.x = playerPosition.position.x - transform.position.x;
-                transform.position = transform.position + direction.normalized * speed * Time.deltaTime;
+                if (playerPosition != null)
+                {
+                    direction.x = playerPosition.position.x - transform.position.x;
+                    transform.position = transform.position + direction.normalized * speed * Time.deltaTime;// * TimeManager.instance.CustomTimeDilation;
+                }
             }
         }
     }
 
     private void SetPlayerPosition()
     {
-        playerPosition = PlayerMovement.GetPlayerPosition();
+        if (PlayerMovement.GetPlayerPosition() != null)
+            playerPosition = PlayerMovement.GetPlayerPosition();
+        else
+            playerPosition = transform;
     }
 
     private void ManageOrientation()

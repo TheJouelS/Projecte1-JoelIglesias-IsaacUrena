@@ -14,11 +14,13 @@ public class EnemyMovement_Angel : MonoBehaviour
     private bool collidedWithPlayer = false;
     private Animator animator;
     private bool isDying = false;
+    private Rigidbody2D rb;
 
     private void Start()
     {
         spr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         animator.SetBool(walkingTagAnimation, true);
         SetPlayerPosition();
     }
@@ -26,25 +28,37 @@ public class EnemyMovement_Angel : MonoBehaviour
     void Update()
     {
         SetPlayerPosition();
+    }
+    void FixedUpdate()
+    {
         ProcessMovement();
     }
 
     private void SetPlayerPosition()
     {
-        playerPosition = PlayerMovement.GetPlayerPosition();
+        if (PlayerMovement.GetPlayerPosition() != null)
+            playerPosition = PlayerMovement.GetPlayerPosition();
+        else
+            playerPosition = transform;
     }
 
     private void ProcessMovement()
     {
-        if (!collidedWithPlayer && !isDying && transform.position.y <= limitedPosition_Y && playerPosition.position.y <= limitedPosition_Y)
+        if (!collidedWithPlayer && !isDying && rb.position.y <= limitedPosition_Y && playerPosition.position.y <= limitedPosition_Y)
         {
-            direction.x = playerPosition.position.x - transform.position.x;
-            transform.position = transform.position + Vector3.right * direction.normalized.x * speed * Time.deltaTime;
+            if (playerPosition != null)
+            {
+                direction.x = playerPosition.position.x - rb.position.x;
+                rb.position = rb.position + Vector2.right * direction.normalized.x * speed * Time.fixedDeltaTime;
+            }
         }
         else if (!collidedWithPlayer && !isDying)
         {
-            direction = playerPosition.position - transform.position;
-            transform.position = transform.position + direction.normalized * speed * Time.deltaTime;
+            if (playerPosition != null)
+            {
+                direction = (Vector2)playerPosition.position - rb.position;
+                rb.position = rb.position + (Vector2)direction.normalized * speed * Time.fixedDeltaTime;
+            }
         }
 
         ManageOrientation();
@@ -85,9 +99,9 @@ public class EnemyMovement_Angel : MonoBehaviour
     private void IsTakingDamage()
     {
         if (direction.x < 0f)
-            transform.position = transform.position + Vector3.right * impulseDamage;
+            rb.position = rb.position + Vector2.right * impulseDamage;
         else
-            transform.position = transform.position + Vector3.left * impulseDamage;
+            rb.position = rb.position + Vector2.left * impulseDamage;
     }
 
     private void IsDying()
