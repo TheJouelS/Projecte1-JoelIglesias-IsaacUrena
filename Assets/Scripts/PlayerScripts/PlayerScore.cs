@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class PlayerScore : MonoBehaviour
 {
-    private static int score = 0;
+    public int score = 0;
 
-    public static void UpScore()
+    public static PlayerScore instance;
+
+    private void Awake()
+    {
+        if (PlayerScore.instance == null)
+            PlayerScore.instance = this;
+        else
+            Destroy(gameObject);
+    }
+
+    public void UpScore()
     {
         if (PlayerLevel.GetPlayerLevel() >= PlayerLevel.GetMaxLevel() / 2)
         {
@@ -23,7 +33,7 @@ public class PlayerScore : MonoBehaviour
         //Debug.Log("Tu puntuación Suma: " + score);
     }
 
-    public static void ReduceScore(bool playerLifeIsAtZero, uint decrementValue = 1)
+    public void ReduceScore(bool playerLifeIsAtZero, uint decrementValue = 1)
     {
         if (playerLifeIsAtZero)
         {
@@ -42,12 +52,12 @@ public class PlayerScore : MonoBehaviour
 
     public static void ResetScore()
     {
-        score = 0;
+        PlayerScore.instance.score = 0;
         //Debug.Log("Tu puntuación se resetea: " + score);
     }
 
     public static int GetScore()
     {
-        return score;
+        return PlayerScore.instance.score;
     }
 }

@@ -53,11 +53,11 @@ public class PlayerHealth : MonoBehaviour
         if (copy_currentLife > 0 && !itIsFromAnAxe)
             copy_currentLife--;
 
-        PlayerScore.ReduceScore(isPlayerAtZero(), damage);
+        PlayerScore.instance.ReduceScore(isPlayerAtZero(), damage);
         isBeingDamaged = true;
     }
 
-    public static void Heal() //Para gotas blancas...
+    public static void Heal() //Para gotas moradas...
     {
         if (copy_currentLife < copy_maxLife)
             copy_currentLife++;
@@ -68,7 +68,7 @@ public class PlayerHealth : MonoBehaviour
         copy_maxLife++;
         copy_currentLife = copy_maxLife;
 
-        Debug.Log("Max: " + copy_maxLife + " | Current: " + copy_currentLife);
+        //Debug.Log("Max: " + copy_maxLife + " | Current: " + copy_currentLife);
     }
 
     private static void ResetCurrentValues()

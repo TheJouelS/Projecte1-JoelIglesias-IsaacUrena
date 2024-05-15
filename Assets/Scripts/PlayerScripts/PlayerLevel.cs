@@ -6,21 +6,36 @@ using UnityEngine;
 
 public class PlayerLevel : MonoBehaviour
 {
+    public int playerLevel = 1;
+    public int maxLevel = 18;
+    public int nextGoal;
+    public int scoringMargin = 5; //USAR PARA PONER NIVEL!!!!!!!!!!!!!!!!!! en nextGoal (en vez del 1 hardcodeado que hay)
+
+    /*
     private static int playerLevel = 1;
     private static int maxLevel = 18;
     private static int nextGoal;
-    public int scoringMargin = 5; //USAR PARA PONER NIVEL!!!!!!!!!!!!!!!!!! en nextGoal (en vez del 1 hardcodeado que hay)
+    public static int scoringMargin = 5;*/
+
+    public static PlayerLevel instance;
+
+    private void Awake()
+    {
+        if (PlayerLevel.instance == null)
+            PlayerLevel.instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     private void Start()
     {
-        playerLevel = 1;
         LevelUp(true);
     }
 
     void Update()
     {
         if (playerLevel < maxLevel)
-            if (PlayerScore.GetScore() == nextGoal)
+            if (PlayerScore.GetScore() >= nextGoal)
             {
                 LevelUp(false);
 
@@ -29,7 +44,7 @@ public class PlayerLevel : MonoBehaviour
             }
     }
 
-    private static void LevelUp(bool firstTime)
+    private void LevelUp(bool firstTime)
     {
         if (!firstTime)
             playerLevel++;
@@ -39,16 +54,16 @@ public class PlayerLevel : MonoBehaviour
 
     public static int GetNextGoal()
     {
-        return nextGoal;
+        return instance.nextGoal;
     }
 
     public static int GetPlayerLevel()
     {
-        return playerLevel;
+        return instance.playerLevel;
     }
 
     public static int GetMaxLevel()
     {
-        return maxLevel;
+        return instance.maxLevel;
     }
 }

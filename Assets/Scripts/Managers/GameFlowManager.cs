@@ -79,6 +79,7 @@ public class GameFlowManager : MonoBehaviour
                 break;
             case EGameState.RESTART:
                 Time.timeScale = 0.0f;
+                PlayerScore.ResetScore();
                 ResetGame();
                 break;
         }
