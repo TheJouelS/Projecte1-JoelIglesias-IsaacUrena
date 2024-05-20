@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private uint hitDamage; //Para el ataque de suelo
+    [SerializeField] private uint hitDamage; //For seismic attack (will be implemented in Delivery 3)
     [SerializeField] private float timeBetweenHit;
     [SerializeField] private GameObject playerBoddy;
 

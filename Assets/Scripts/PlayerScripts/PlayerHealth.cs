@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -57,7 +52,7 @@ public class PlayerHealth : MonoBehaviour
         isBeingDamaged = true;
     }
 
-    public static void Heal() //Para gotas moradas...
+    public static void Heal() //For purple drops (will be implemented in Delivery 3)
     {
         if (copy_currentLife < copy_maxLife)
             copy_currentLife++;
@@ -67,8 +62,6 @@ public class PlayerHealth : MonoBehaviour
     {
         copy_maxLife++;
         copy_currentLife = copy_maxLife;
-
-        //Debug.Log("Max: " + copy_maxLife + " | Current: " + copy_currentLife);
     }
 
     private static void ResetCurrentValues()

@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using System.Xml.Linq;
 using UnityEngine;
 
 public class AxeSpawner : MonoBehaviour

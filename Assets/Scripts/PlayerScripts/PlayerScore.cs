@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScore : MonoBehaviour
@@ -29,8 +27,6 @@ public class PlayerScore : MonoBehaviour
             if (score < PlayerLevel.GetNextGoal())
                 score++;
         }
-
-        //Debug.Log("Tu puntuación Suma: " + score);
     }
 
     public void ReduceScore(bool playerLifeIsAtZero, uint decrementValue = 1)
@@ -38,7 +34,6 @@ public class PlayerScore : MonoBehaviour
         if (playerLifeIsAtZero)
         {
             score = (int) Mathf.Round(score / 2);
-            //Debug.Log("Tu puntuación se divide: " + score);
         }
         else
         {
@@ -46,14 +41,12 @@ public class PlayerScore : MonoBehaviour
                 score -= (int)decrementValue;
             else
                 score = 0;
-            //Debug.Log("Tu puntuación RESTA, ahora tienes: " + score);
         }
     }
 
     public static void ResetScore()
     {
         PlayerScore.instance.score = 0;
-        //Debug.Log("Tu puntuación se resetea: " + score);
     }
 
     public static int GetScore()

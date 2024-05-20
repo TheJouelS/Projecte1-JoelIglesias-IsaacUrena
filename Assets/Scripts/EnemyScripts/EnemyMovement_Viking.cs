@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using UnityEditor;
 using UnityEngine;
 
 public class EnemyMovement_Viking : MonoBehaviour
@@ -27,8 +23,6 @@ public class EnemyMovement_Viking : MonoBehaviour
         NotifyCollisionAxe.NotifyCollisionExit += KeepMoving;
 
         SetPlayerPosition();
-
-        //animator.SetFloat("animSpeed", 0f);
     }
 
     void Update()
@@ -47,7 +41,7 @@ public class EnemyMovement_Viking : MonoBehaviour
                 if (playerPosition != null)
                 {
                     direction.x = playerPosition.position.x - transform.position.x;
-                    transform.position = transform.position + direction.normalized * speed * Time.deltaTime;// * TimeManager.instance.CustomTimeDilation;
+                    transform.position = transform.position + direction.normalized * speed * Time.deltaTime;
                 }
             }
         }
