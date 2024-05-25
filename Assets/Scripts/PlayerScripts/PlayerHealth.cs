@@ -6,15 +6,15 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     private static bool isBeingDamaged = false;
-    private static uint copy_currentLife;
-    private static uint copy_maxLife;
+    private static int copy_currentLife;
+    private static int copy_maxLife;
     private static float copy_timeBeingDamaged;
 
     private void Start()
     {
         if (PlayerLevel.GetPlayerLevel() == 1)
         {
-            copy_maxLife = (uint)PlayerLevel.GetPlayerLevel() + 2;
+            copy_maxLife = PlayerLevel.GetPlayerLevel() + 2;
             copy_currentLife = copy_maxLife;
             copy_timeBeingDamaged = timeBeingDamaged;
         }
@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
         if (isBeingDamaged)
             ChangeSpriteColor();
 
-        if (isPlayerAtZero())
+        if (playerIsReadyToResetLifes())
             ResetCurrentValues();
     }
 
@@ -45,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
 
     public static void TakeDamage(uint damage, bool itIsFromAnAxe = false)
     {
-        if (copy_currentLife > 0 && !itIsFromAnAxe)
+        if (copy_currentLife >= 0 && !itIsFromAnAxe)
             copy_currentLife--;
 
         PlayerScore.instance.ReduceScore(isPlayerAtZero(), damage);
@@ -69,8 +69,23 @@ public class PlayerHealth : MonoBehaviour
         copy_currentLife = copy_maxLife;
     }
 
+    public static bool playerIsReadyToResetLifes()
+    {
+        return copy_currentLife < 0;
+    }
+
     public static bool isPlayerAtZero() 
     {
         return copy_currentLife == 0;
+    }
+
+    public static int GetCurrentLife()
+    {
+        return copy_currentLife;
+    }
+
+    public static int GetMaxLife()
+    {
+        return copy_maxLife;
     }
 }

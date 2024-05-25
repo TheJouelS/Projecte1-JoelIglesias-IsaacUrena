@@ -29,7 +29,7 @@ public class GameFlowManager : MonoBehaviour
             ChangeGameState(EGameState.PAUSED);
 
         if(!stopExecuting)
-            if (PlayerLevel.GetPlayerLevel() == PlayerLevel.GetMaxLevel() && PlayerScore.GetScore() == PlayerLevel.GetNextGoal())
+            if (PlayerLevel.GetPlayerLevel() == PlayerLevel.GetMaxLevel() && PlayerScore.GetScore() >= PlayerLevel.GetNextGoal())
                 ChangeGameState(EGameState.MAX_LEVEL_REACHED);
 
         if (currentGameState == EGameState.MAX_LEVEL_REACHED)
@@ -63,8 +63,10 @@ public class GameFlowManager : MonoBehaviour
         {
             case EGameState.START:
                 Time.timeScale = 0.0f;
+                CanvasManager.instance.EnableStartCanvas();
                 break;
             case EGameState.PLAYING:
+                CanvasManager.instance.EnableHudCanvas();
                 break;
             case EGameState.PAUSED:
                 Time.timeScale = 0.0f;
@@ -77,6 +79,7 @@ public class GameFlowManager : MonoBehaviour
                 break;
             case EGameState.RESTART:
                 Time.timeScale = 0.0f;
+                CanvasManager.instance.DisableHudCanvas();
                 PlayerScore.ResetScore();
                 ResetGame();
                 break;
@@ -89,6 +92,7 @@ public class GameFlowManager : MonoBehaviour
         {
             case EGameState.START:
                 Time.timeScale = 1.0f;
+                CanvasManager.instance.DisableStartCanvas();
                 break;
             case EGameState.PLAYING:
                 break;

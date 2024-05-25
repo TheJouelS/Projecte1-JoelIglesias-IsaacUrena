@@ -52,6 +52,8 @@ public class ChangesLevelingUp : MonoBehaviour
 
         //We match the level to that of the current player
         currentLevel = PlayerLevel.GetPlayerLevel();
+
+        CanvasManager.instance.PlayerIsLevelingUp();
     }
 
     private void EvolveCharacter(bool firstTime)

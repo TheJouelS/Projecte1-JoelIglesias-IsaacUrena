@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -6,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
     public string damagedTag, diedTag, colliderPlayerAttack;
     public bool isDying = false;
     public float timerCooldown;
+    public GameObject floatingPoints, parentFloatingPoints, enemyParent;
 
     private Animator animator;
     private float timer;
@@ -37,6 +39,9 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(uint damage)
     {
+        var damagedPoints = Instantiate(floatingPoints, parentFloatingPoints.transform.position, Quaternion.identity, parentFloatingPoints.transform);
+        damagedPoints.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
+
         if (damage < currentLife) currentLife -= damage;
         else currentLife = 0;
 
@@ -71,7 +76,7 @@ public class EnemyHealth : MonoBehaviour
     //It's called through Animator:
     private void Disappear()
     {
-        Destroy(gameObject);
+        Destroy(enemyParent.gameObject);
     }
 
     private void ConvertSpriteToRed()

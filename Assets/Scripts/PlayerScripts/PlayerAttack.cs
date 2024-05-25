@@ -12,9 +12,12 @@ public class PlayerAttack : MonoBehaviour
 
     private float timeNextAttack;
 
+    public static float copy_timeBetweenHit_Attack1;
+
     private void Start()
     {
         timeNextAttack = 0f;
+        copy_timeBetweenHit_Attack1 = timeBetweenHit;
     }
 
     private void Update()
@@ -25,6 +28,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyUp(keyButtonAttack) && timeNextAttack <= 0f)
         {
             Hit();
+            CanvasManager.instance.IsUsingAttack(1);
             timeNextAttack = timeBetweenHit;
         }
     }
