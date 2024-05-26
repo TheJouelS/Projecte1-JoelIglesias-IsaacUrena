@@ -2,16 +2,40 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
+    [SerializeField] float CustomTimeDilation = 1f;
+    [SerializeField] float totalTimeOfGame = 0f;
+    private bool stopCounting = false;
+
     public static TimeManager instance;
 
-    public float CustomTimeDilation = 1f;
+    private void Awake()
+    {
+        if (TimeManager.instance == null)
+            TimeManager.instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     void Start()
     {
-        if (instance != null)
-            Destroy(gameObject);
+        CustomTimeDilation = 1f;
+        totalTimeOfGame = 0f;
+        stopCounting = false;
+    }
 
-        instance = this;
-        DontDestroyOnLoad(gameObject);
+    private void Update()
+    {
+        if (!stopCounting)
+            totalTimeOfGame += Time.deltaTime;
+    }
+
+    public float GetTotalTime()
+    {
+        return totalTimeOfGame/60f;
+    }
+
+    public void StopCountingTotalTime()
+    {
+        stopCounting = true;
     }
 }

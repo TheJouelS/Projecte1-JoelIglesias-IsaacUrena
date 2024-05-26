@@ -16,16 +16,19 @@ public class PlayerScore : MonoBehaviour
 
     public void UpScore()
     {
-        if (PlayerLevel.GetPlayerLevel() >= PlayerLevel.GetMaxLevel() / 2)
+        if (score < 9999999)
         {
-            if (score + 2 <= PlayerLevel.GetNextGoal())
-                score += 2;
-            else score++;
-        }
-        else
-        {
-            if (score < PlayerLevel.GetNextGoal())
-                score++;
+            if (PlayerLevel.GetPlayerLevel() >= PlayerLevel.GetMaxLevel() / 2)
+            {
+                if (score + 2 <= PlayerLevel.GetNextGoal())
+                    score += 2;
+                else score++;
+            }
+            else
+            {
+                if (score < PlayerLevel.GetNextGoal())
+                    score++;
+            }
         }
     }
 

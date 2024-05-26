@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private bool lookingRight = true;
 
     private static Transform copy_playerPosition;
+    public static bool gameIsPaused;
 
     private void Start()
     {
@@ -30,7 +31,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         ProcessMovement();
-        ProcessJump();
+
+        if (!gameIsPaused)
+            ProcessJump();
     }
 
     private void ProcessMovement()

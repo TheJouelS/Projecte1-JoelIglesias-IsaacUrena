@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -14,8 +13,8 @@ public class CanvasManager : MonoBehaviour
 
     public List<Sprite> l_greySpriteSkill = new List<Sprite>();
     public List<Sprite> l_colorSpriteSkill = new List<Sprite>();
+    public string animationSkillTag_1 = "iniciateAnim";
 
-    public Animator a_spacebarKeyBoard;
     private bool playerIsLevelingUp = false, playerIsAttacking = false;
     private float timerBarLevel = 0f, timerRadiusSkills = 0f;
     private int lastBiggestScore = 0;
@@ -33,9 +32,9 @@ public class CanvasManager : MonoBehaviour
     private void Start()
     {
         EnableStartCanvas();
-        c_hud.enabled = false;
-        c_finish.enabled = false;
-        c_pause.enabled = false;
+        DisableHudCanvas();
+        DisablePauseCanvas();
+        DisableFinishCanvas();
 
         c_hud.transform.GetChild(0).GetComponent<Image>().sprite = l_greySpritePlayer[PlayerLevel.GetPlayerLevel() - 1];
         c_hud.transform.GetChild(1).GetComponent<Image>().sprite = l_colorSpritePlayer[PlayerLevel.GetPlayerLevel() - 1];
@@ -99,7 +98,7 @@ public class CanvasManager : MonoBehaviour
 
             if (c_hud.transform.GetChild(8).GetComponent<Image>().fillAmount >= 1f)
             {
-                c_hud.transform.GetChild(8).GetComponent<Animator>().SetTrigger("iniciateAnim");////////////////////////////////
+                c_hud.transform.GetChild(8).GetComponent<Animator>().SetTrigger(animationSkillTag_1);
                 playerIsAttacking = false;
                 timerRadiusSkills = 0f;
             }
@@ -135,24 +134,28 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    public void EnableStartCanvas()
-    {
-        c_start.enabled = true;
-        a_spacebarKeyBoard.enabled = true;///////////////////////////
+    public void EnableStartCanvas() {c_start.enabled = true;}
+
+    public void DisableStartCanvas() {c_start.enabled = false;}
+
+    public void EnableHudCanvas() {c_hud.enabled = true;}
+
+    public void DisableHudCanvas() {c_hud.enabled = false;}
+
+    public void EnablePauseCanvas() 
+    { 
+        c_pause.enabled = true;
+        c_pause.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Nivel: " + PlayerLevel.GetPlayerLevel();
+        c_pause.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Puntos: " + PlayerScore.GetScore();
     }
 
-    public void DisableStartCanvas()
-    {
-        c_start.enabled = false;
+    public void DisablePauseCanvas() { c_pause.enabled = false; }
+
+    public void EnableFinishCanvas() 
+    { 
+        c_finish.enabled = true;
+        c_finish.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Tiempo total de la partida: " + TimeManager.instance.GetTotalTime().ToString("F2") + " Minutos";
     }
 
-    public void EnableHudCanvas()
-    {
-        c_hud.enabled = true;
-    }
-
-    public void DisableHudCanvas()
-    {
-        c_hud.enabled = false;
-    }
+    public void DisableFinishCanvas() { c_finish.enabled = false; }
 }

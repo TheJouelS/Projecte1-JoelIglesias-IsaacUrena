@@ -39,14 +39,17 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(uint damage)
     {
-        var damagedPoints = Instantiate(floatingPoints, parentFloatingPoints.transform.position, Quaternion.identity, parentFloatingPoints.transform);
-        damagedPoints.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
+        if (!isDying)
+        {
+            var damagedPoints = Instantiate(floatingPoints, parentFloatingPoints.transform.position, Quaternion.identity, parentFloatingPoints.transform);
+            damagedPoints.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
 
-        if (damage < currentLife) currentLife -= damage;
-        else currentLife = 0;
+            if (damage < currentLife) currentLife -= damage;
+            else currentLife = 0;
 
-        if (currentLife <= 0) Death();
-        else animator.SetTrigger(damagedTag);
+            if (currentLife <= 0) Death();
+            else animator.SetTrigger(damagedTag);
+        }
     }
 
     private void Death()
