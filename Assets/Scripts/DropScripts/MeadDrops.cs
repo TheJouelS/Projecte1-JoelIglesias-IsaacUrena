@@ -21,7 +21,7 @@ public class MeadDrops : MonoBehaviour
 
         SoundManager.instance.s_catchDrops.loop = false;
         SoundManager.instance.s_catchDrops.pitch = 1f;
-        SoundManager.instance.s_catchDrops.volume = 0.25f;
+        SoundManager.instance.s_catchDrops.volume = 1f;
     }
 
     private void Update()

@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     public bool isDying = false;
     public float timerCooldown;
     public GameObject floatingPoints, parentFloatingPoints, enemyParent;
+    public AudioSource s_enemyDamaged;
 
     private Animator animator;
     private float timer;
@@ -17,6 +18,10 @@ public class EnemyHealth : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         timer = timerCooldown;
+
+        s_enemyDamaged.loop = false;
+        s_enemyDamaged.pitch = 1.6f;
+        s_enemyDamaged.volume = 0.5f;
     }
 
     private void Update()
@@ -49,6 +54,8 @@ public class EnemyHealth : MonoBehaviour
 
             if (currentLife <= 0) Death();
             else animator.SetTrigger(damagedTag);
+
+            s_enemyDamaged.Play();
         }
     }
 

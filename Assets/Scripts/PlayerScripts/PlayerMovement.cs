@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     private bool lookingRight = true, isWalkig = false;
 
     private static Transform copy_playerPosition;
-    public static bool gameIsPaused;
 
     private void Start()
     {
@@ -37,10 +36,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        ProcessMovement();
-
-        if (!gameIsPaused)
+        if (!GameFlowManager.gameIsPaused)
+        {
+            ProcessMovement();
             ProcessJump();
+        }
+        else
+            SoundManager.instance.s_walk.Pause();
     }
 
     private void ProcessMovement()

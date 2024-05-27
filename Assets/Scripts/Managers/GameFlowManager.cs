@@ -10,6 +10,8 @@ public class GameFlowManager : MonoBehaviour
     private EGameState currentGameState = EGameState.START;
     private bool maxLevelReached = false, stopExecuting = false, firstTimeThatEnter = true;
 
+    public static bool gameIsPaused;
+
     private enum EGameState
     {
         START,
@@ -75,13 +77,13 @@ public class GameFlowManager : MonoBehaviour
         {
             case EGameState.START:
                 Time.timeScale = 0.0f;
-                PlayerMovement.gameIsPaused = true;
+                gameIsPaused = true;
                 CanvasManager.instance.EnableStartCanvas();
                 SoundManager.instance.m_introMusic.playOnAwake = true;
                 SoundManager.instance.m_introMusic.loop = true;
                 break;
             case EGameState.PLAYING:
-                PlayerMovement.gameIsPaused = false;
+                gameIsPaused = false;
                 CanvasManager.instance.EnableHudCanvas();
                 if (firstTimeThatEnter)
                 {
@@ -89,12 +91,11 @@ public class GameFlowManager : MonoBehaviour
                     SoundManager.instance.m_mainMusic.Play();
                     firstTimeThatEnter = false;
                 }
-                SoundManager.instance.m_mainMusic.volume = 0.025f;
+                SoundManager.instance.m_mainMusic.volume = 0.035f;
                 break;
             case EGameState.PAUSED:
                 Time.timeScale = 0.0f;
                 CanvasManager.instance.EnablePauseCanvas();
-                SoundManager.instance.m_mainMusic.volume = 0.01f;
                 break;
             case EGameState.MAX_LEVEL_REACHED:
                 Time.timeScale = 0.0f;
@@ -125,7 +126,8 @@ public class GameFlowManager : MonoBehaviour
                 SoundManager.instance.m_introMusic.Stop();
                 break;
             case EGameState.PLAYING:
-                PlayerMovement.gameIsPaused = true;
+                gameIsPaused = true;
+                SoundManager.instance.m_mainMusic.volume = 0.01f;
                 break;
             case EGameState.PAUSED:
                 Time.timeScale = 1.0f;

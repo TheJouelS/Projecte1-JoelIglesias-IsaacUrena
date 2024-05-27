@@ -11,7 +11,7 @@ public class EnemyMovement_Angel : MonoBehaviour
     private Vector3 direction = Vector3.zero;
     private bool collidedWithPlayer = false;
     private Animator animator;
-    private bool isDying = false;
+    private bool isDying = false, stopSound;
     private Rigidbody2D rb;
     private AudioSource s_angelSounds;
     private float volumeOfFlyingSound;
@@ -24,25 +24,45 @@ public class EnemyMovement_Angel : MonoBehaviour
         animator.SetBool(walkingTagAnimation, true);
         SetPlayerPosition();
 
+        stopSound = true;
+
         s_angelSounds = GetComponent<AudioSource>();
+
+        if (EnemySpawner.enemyCounter <= 5)
+        {
+            float n;
+            n = Random.Range(0.15f, 0.25f);
+            volumeOfFlyingSound = n;
+            s_angelSounds.volume = volumeOfFlyingSound;
+        }
+        else
+        {
+            volumeOfFlyingSound = 0f;
+            s_angelSounds.volume = volumeOfFlyingSound;
+        }
+
         s_angelSounds.clip = c_angelFlying;
         s_angelSounds.Play();
         s_angelSounds.loop = true;
         s_angelSounds.pitch = 1.4f;
-
-        float n;
-        if (EnemySpawner.enemyCounter <= 5)
-            n = Random.Range(0.2f, 0.4f);
-        else
-            n = 0f;
-        volumeOfFlyingSound = n;
-        s_angelSounds.volume = volumeOfFlyingSound;
     }
 
     void Update()
     {
         SetPlayerPosition();
+
+        if (GameFlowManager.gameIsPaused)
+        {
+            s_angelSounds.Pause();
+            stopSound = false;
+        }
+        else if (!stopSound)
+        {
+            s_angelSounds.Play();
+            stopSound = true;
+        }
     }
+
     void FixedUpdate()
     {
         ProcessMovement();

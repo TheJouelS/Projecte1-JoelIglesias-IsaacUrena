@@ -13,6 +13,19 @@ public class ThrowingAxe : MonoBehaviour
     private Vector3 direction;
     private Rigidbody2D rgb;
     private AudioSource s_flyingAxe;
+    private bool stopSound;
+
+    private void Start()
+    {
+        if (EnemySpawner.enemyCounter <= 10)
+        {
+            float n;
+            n = Random.Range(0.2f, 0.4f);
+            s_flyingAxe.volume = n;
+        }
+        else
+            s_flyingAxe.volume = 0f;
+    }
 
     public void OnEnable()
     {
@@ -27,23 +40,29 @@ public class ThrowingAxe : MonoBehaviour
         rgb = GetComponent<Rigidbody2D>();
         rgb.AddForce(Vector2.up * 2, ForceMode2D.Impulse);
 
+        stopSound = true;
+
         s_flyingAxe = GetComponent<AudioSource>();
         s_flyingAxe.Play();
         s_flyingAxe.loop = true;
         s_flyingAxe.pitch = 2f;
-
-        float n;
-        if (EnemySpawner.enemyCounter <= 5)
-            n = Random.Range(0.2f, 0.4f);
-        else
-            n = 0f;
-        s_flyingAxe.volume = n;
     }
 
     void Update()
     {
         transform.position = transform.position + direction.normalized * speed * Time.deltaTime;
         transform.Rotate(rotationSpeed * orientation * Time.deltaTime);
+
+        if (GameFlowManager.gameIsPaused)
+        {
+            s_flyingAxe.Pause();
+            stopSound = false;
+        }
+        else if (!stopSound)
+        {
+            s_flyingAxe.Play();
+            stopSound = true;
+        }
     }
 
     private void SetPlayerPosition()
