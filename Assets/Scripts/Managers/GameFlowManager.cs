@@ -8,7 +8,7 @@ public class GameFlowManager : MonoBehaviour
     public GameObject buttonToResetGame;
 
     private EGameState currentGameState = EGameState.START;
-    private bool maxLevelReached = false, stopExecuting = false;
+    private bool maxLevelReached = false, stopExecuting = false, firstTimeThatEnter = true;
 
     private enum EGameState
     {
@@ -24,6 +24,10 @@ public class GameFlowManager : MonoBehaviour
         EnterCurrentState();
         buttonToResetGame.GetComponent<Button>().interactable = false;
         buttonToResetGame.GetComponent<Image>().color = new Color(255f, 255f, 255f, 150f/255f);
+
+        SoundManager.instance.s_maxLevel.volume = 0.5f;
+        SoundManager.instance.s_maxLevel.pitch = 1f;
+        SoundManager.instance.s_maxLevel.loop = false;
     }
 
     private void Update()
@@ -73,14 +77,24 @@ public class GameFlowManager : MonoBehaviour
                 Time.timeScale = 0.0f;
                 PlayerMovement.gameIsPaused = true;
                 CanvasManager.instance.EnableStartCanvas();
+                SoundManager.instance.m_introMusic.playOnAwake = true;
+                SoundManager.instance.m_introMusic.loop = true;
                 break;
             case EGameState.PLAYING:
                 PlayerMovement.gameIsPaused = false;
                 CanvasManager.instance.EnableHudCanvas();
+                if (firstTimeThatEnter)
+                {
+                    SoundManager.instance.m_mainMusic.loop = true;
+                    SoundManager.instance.m_mainMusic.Play();
+                    firstTimeThatEnter = false;
+                }
+                SoundManager.instance.m_mainMusic.volume = 0.025f;
                 break;
             case EGameState.PAUSED:
                 Time.timeScale = 0.0f;
                 CanvasManager.instance.EnablePauseCanvas();
+                SoundManager.instance.m_mainMusic.volume = 0.01f;
                 break;
             case EGameState.MAX_LEVEL_REACHED:
                 Time.timeScale = 0.0f;
@@ -88,6 +102,7 @@ public class GameFlowManager : MonoBehaviour
                 buttonToResetGame.GetComponent<Image>().color = Color.white;
                 TimeManager.instance.StopCountingTotalTime();
                 CanvasManager.instance.EnableFinishCanvas();
+                SoundManager.instance.s_maxLevel.Play();
                 maxLevelReached = true;
                 stopExecuting = true;
                 break;
@@ -107,6 +122,7 @@ public class GameFlowManager : MonoBehaviour
             case EGameState.START:
                 Time.timeScale = 1.0f;
                 CanvasManager.instance.DisableStartCanvas();
+                SoundManager.instance.m_introMusic.Stop();
                 break;
             case EGameState.PLAYING:
                 PlayerMovement.gameIsPaused = true;

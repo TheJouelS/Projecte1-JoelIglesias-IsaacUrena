@@ -18,7 +18,12 @@ public class MeadDrops : MonoBehaviour
 
         timer = timerFlip;
         animator.enabled = false;
+
+        SoundManager.instance.s_catchDrops.loop = false;
+        SoundManager.instance.s_catchDrops.pitch = 1f;
+        SoundManager.instance.s_catchDrops.volume = 0.25f;
     }
+
     private void Update()
     {
         if (timer > 0)
@@ -37,6 +42,7 @@ public class MeadDrops : MonoBehaviour
         {
             if (collision.tag == tagPlayerHole)
             {
+                SoundManager.instance.s_catchDrops.Play();
                 PlayerScore.instance.UpScore();
                 DestroyGameObject();
             }

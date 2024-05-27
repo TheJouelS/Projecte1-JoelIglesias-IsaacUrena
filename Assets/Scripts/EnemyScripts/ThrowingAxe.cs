@@ -12,6 +12,7 @@ public class ThrowingAxe : MonoBehaviour
     private Transform playerPosition;
     private Vector3 direction;
     private Rigidbody2D rgb;
+    private AudioSource s_flyingAxe;
 
     public void OnEnable()
     {
@@ -25,6 +26,18 @@ public class ThrowingAxe : MonoBehaviour
 
         rgb = GetComponent<Rigidbody2D>();
         rgb.AddForce(Vector2.up * 2, ForceMode2D.Impulse);
+
+        s_flyingAxe = GetComponent<AudioSource>();
+        s_flyingAxe.Play();
+        s_flyingAxe.loop = true;
+        s_flyingAxe.pitch = 2f;
+
+        float n;
+        if (EnemySpawner.enemyCounter <= 5)
+            n = Random.Range(0.2f, 0.4f);
+        else
+            n = 0f;
+        s_flyingAxe.volume = n;
     }
 
     void Update()
@@ -52,6 +65,7 @@ public class ThrowingAxe : MonoBehaviour
 
     private void OnDisable()
     {
+        s_flyingAxe.Stop();
         axeSpawner.axeIsReady = true;
     }
 }

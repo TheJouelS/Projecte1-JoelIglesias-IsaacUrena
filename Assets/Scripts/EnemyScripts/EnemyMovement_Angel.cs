@@ -4,6 +4,7 @@ public class EnemyMovement_Angel : MonoBehaviour
 {
     public float speed, limitedPosition_Y, impulseDamage;
     public string playerTag = "PlayerBoddy", walkingTagAnimation = "isWalking";
+    public AudioClip c_angelAttack, c_angelFlying;
 
     private Transform playerPosition;
     private SpriteRenderer spr;
@@ -12,6 +13,8 @@ public class EnemyMovement_Angel : MonoBehaviour
     private Animator animator;
     private bool isDying = false;
     private Rigidbody2D rb;
+    private AudioSource s_angelSounds;
+    private float volumeOfFlyingSound;
 
     private void Start()
     {
@@ -20,6 +23,20 @@ public class EnemyMovement_Angel : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator.SetBool(walkingTagAnimation, true);
         SetPlayerPosition();
+
+        s_angelSounds = GetComponent<AudioSource>();
+        s_angelSounds.clip = c_angelFlying;
+        s_angelSounds.Play();
+        s_angelSounds.loop = true;
+        s_angelSounds.pitch = 1.4f;
+
+        float n;
+        if (EnemySpawner.enemyCounter <= 5)
+            n = Random.Range(0.2f, 0.4f);
+        else
+            n = 0f;
+        volumeOfFlyingSound = n;
+        s_angelSounds.volume = volumeOfFlyingSound;
     }
 
     void Update()
@@ -72,11 +89,29 @@ public class EnemyMovement_Angel : MonoBehaviour
 
     private void StopMoving()
     {
+        if (!collidedWithPlayer)
+        {
+            s_angelSounds.Stop();
+            s_angelSounds.clip = c_angelAttack;
+            s_angelSounds.volume = 0.3f;
+            s_angelSounds.pitch = 1f;
+            s_angelSounds.Play();
+        }
+
         collidedWithPlayer = true;
     }
 
     private void KeepMoving()
     {
+        if (collidedWithPlayer)
+        {
+            s_angelSounds.Stop();
+            s_angelSounds.clip = c_angelFlying;
+            s_angelSounds.volume = volumeOfFlyingSound;
+            s_angelSounds.pitch = 1.4f;
+            s_angelSounds.Play();
+        }
+
         collidedWithPlayer = false;
     }
 
@@ -104,6 +139,7 @@ public class EnemyMovement_Angel : MonoBehaviour
     private void IsDying()
     {
         IsTakingDamage();
+        s_angelSounds.Stop();
         isDying = true;
     }
 }

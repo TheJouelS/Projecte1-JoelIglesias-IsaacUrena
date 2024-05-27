@@ -18,6 +18,10 @@ public class PlayerHealth : MonoBehaviour
             copy_currentLife = copy_maxLife;
             copy_timeBeingDamaged = timeBeingDamaged;
         }
+
+        SoundManager.instance.s_takeDamage.volume = 0.3f;
+        SoundManager.instance.s_takeDamage.pitch = 1f;
+        SoundManager.instance.s_takeDamage.loop = false;
     }
 
     private void Update()
@@ -45,11 +49,13 @@ public class PlayerHealth : MonoBehaviour
 
     public static void TakeDamage(uint damage, bool itIsFromAnAxe = false)
     {
-        if (copy_currentLife >= 0 && !itIsFromAnAxe)
+        if (copy_currentLife > 0 && !itIsFromAnAxe)
             copy_currentLife--;
 
         PlayerScore.instance.ReduceScore(isPlayerAtZero(), damage);
         isBeingDamaged = true;
+
+        SoundManager.instance.s_takeDamage.Play();
     }
 
     public static void Heal() //For purple drops (will be implemented in Delivery 3)

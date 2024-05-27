@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float timer;
     private bool isOnGround;
     private Rigidbody2D rgb;
-    private bool lookingRight = true;
+    private bool lookingRight = true, isWalkig = false;
 
     private static Transform copy_playerPosition;
     public static bool gameIsPaused;
@@ -27,7 +27,14 @@ public class PlayerMovement : MonoBehaviour
 
         NotifyCollisionGround.NotifyCollisionEnterGround += SetGroundCollisionEnter;
         NotifyCollisionGround.NotifyCollisionExitGround += SetGroundCollisionExit;
+
+        isWalkig = false;
+
+        SoundManager.instance.s_walk.volume = 0.2f;
+        SoundManager.instance.s_walk.pitch = 1f;
+        SoundManager.instance.s_walk.loop = true;
     }
+
     void Update()
     {
         ProcessMovement();
@@ -44,9 +51,22 @@ public class PlayerMovement : MonoBehaviour
         ManageOrientation(inputMovement);
 
         if (inputMovement != 0)
+        {
             Animator.SetBool(playerWalkingTag, true);
+
+            if (!isWalkig && isOnGround)
+            {
+                if (SoundManager.instance.s_walk != null)
+                    SoundManager.instance.s_walk.Play();
+                isWalkig = true;
+            }
+        }
         else
+        {
+            if (SoundManager.instance.s_walk != null)
+                SoundManager.instance.s_walk.Pause();
             Animator.SetBool(playerWalkingTag, false);
+        }
 
         copy_playerPosition = transform;
     }
@@ -57,6 +77,8 @@ public class PlayerMovement : MonoBehaviour
         {
             lookingRight = !lookingRight;
             playerSprite.flipX = !lookingRight;
+
+            isWalkig = false;
         }
     }
 
@@ -79,7 +101,11 @@ public class PlayerMovement : MonoBehaviour
     void SetGroundCollisionExit()
     {
         isOnGround = false;
+        isWalkig = false;
         Animator.SetBool(playerJumpingTag, true);
+
+        if (SoundManager.instance.s_walk != null)
+            SoundManager.instance.s_walk.Stop();
     }
 
     public bool GetPlayerIsOnGround()

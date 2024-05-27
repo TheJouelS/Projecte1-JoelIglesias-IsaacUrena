@@ -15,6 +15,10 @@ public class ChangesLevelingUp : MonoBehaviour
 
     private void Start()
     {
+        SoundManager.instance.s_upLevel.loop = false;
+        SoundManager.instance.s_upLevel.pitch = 1f;
+        SoundManager.instance.s_upLevel.volume = 0.3f;
+
         currentLevel = PlayerLevel.GetPlayerLevel();
         EvolveCharacter(true);
     }
@@ -54,6 +58,9 @@ public class ChangesLevelingUp : MonoBehaviour
         currentLevel = PlayerLevel.GetPlayerLevel();
 
         CanvasManager.instance.PlayerIsLevelingUp();
+
+        //We active the sounds
+        SoundManager.instance.s_upLevel.Play();
     }
 
     private void EvolveCharacter(bool firstTime)
