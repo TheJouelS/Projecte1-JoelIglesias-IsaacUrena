@@ -3782,7 +3782,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Joel Iglesias e Isaac Prieto
+  m_text: Joel Iglesias e Isaac Urena
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b95b9fdb55722cd43939f9bac2d20b16, type: 2}
   m_sharedMaterial: {fileID: 7834984521127666720, guid: b95b9fdb55722cd43939f9bac2d20b16, type: 2}

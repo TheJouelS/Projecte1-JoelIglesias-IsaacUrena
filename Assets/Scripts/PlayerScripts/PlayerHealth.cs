@@ -29,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
         if (isBeingDamaged)
             ChangeSpriteColor();
 
-        if (playerIsReadyToResetLifes())
+        if (isPlayerAtZero())
             ResetCurrentValues();
     }
 
@@ -73,11 +73,6 @@ public class PlayerHealth : MonoBehaviour
     private static void ResetCurrentValues()
     {
         copy_currentLife = copy_maxLife;
-    }
-
-    public static bool playerIsReadyToResetLifes()
-    {
-        return copy_currentLife < 0;
     }
 
     public static bool isPlayerAtZero() 
