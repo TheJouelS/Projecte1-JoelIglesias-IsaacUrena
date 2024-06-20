@@ -3916,7 +3916,7 @@ GameObject:
   - component: {fileID: 808765384}
   - component: {fileID: 808765383}
   m_Layer: 0
-  m_Name: CooliderPlayerIsUp
+  m_Name: ColliderPlayerIsUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
