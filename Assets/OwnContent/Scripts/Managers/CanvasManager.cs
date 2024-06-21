@@ -40,7 +40,6 @@ public class CanvasManager : MonoBehaviour
         c_hud.transform.GetChild(1).GetComponent<Image>().sprite = l_colorSpritePlayer[PlayerLevel.GetPlayerLevel() - 1];
         c_hud.transform.GetChild(1).GetComponent<Image>().fillAmount = 0f;
         c_hud.transform.GetChild(8).GetComponent<Image>().fillAmount = 1f;
-        c_hud.transform.GetChild(10).GetComponent<Image>().fillAmount = 1f;
 
         lastBiggestScore = PlayerScore.GetScore();
     }
@@ -125,10 +124,6 @@ public class CanvasManager : MonoBehaviour
             case 1:
                 c_hud.transform.GetChild(8).GetComponent<Image>().fillAmount = 0;
                 playerIsAttacking = true;
-                break;
-            case 2://PARA CUANDO IMPLEMENTEMOS EL ATAQUE 2
-                break;
-            case 3://PARA CUANDO IMPLEMENTEMOS EL ATAQUE 3
                 break;
         }
     }

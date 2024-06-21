@@ -5,6 +5,8 @@ public class EnemyMovement_Angel : MonoBehaviour
     public float speed, limitedPosition_Y, impulseDamage;
     public string playerTag = "PlayerBoddy", walkingTagAnimation = "isWalking";
     public AudioClip c_angelAttack, c_angelFlying;
+    public int maxNumOfEnemiesOnScreen = 5;
+    public float minVolumeValueWhenFlying = 0.15f, maxVolumeValueWhenFlying = 0.25f, pitchOfSoundWhenFlying = 1.4f, volumeValueWhenAttack = 0.3f, pitchOfSoundWhenAttack = 1f;
 
     private Transform playerPosition;
     private SpriteRenderer spr;
@@ -28,10 +30,10 @@ public class EnemyMovement_Angel : MonoBehaviour
 
         s_angelSounds = GetComponent<AudioSource>();
 
-        if (EnemySpawner.enemyCounter <= 5)
+        if (EnemySpawner.enemyCounter <= maxNumOfEnemiesOnScreen)
         {
             float n;
-            n = Random.Range(0.15f, 0.25f);
+            n = Random.Range(minVolumeValueWhenFlying, maxVolumeValueWhenFlying);
             volumeOfFlyingSound = n;
             s_angelSounds.volume = volumeOfFlyingSound;
         }
@@ -44,7 +46,7 @@ public class EnemyMovement_Angel : MonoBehaviour
         s_angelSounds.clip = c_angelFlying;
         s_angelSounds.Play();
         s_angelSounds.loop = true;
-        s_angelSounds.pitch = 1.4f;
+        s_angelSounds.pitch = pitchOfSoundWhenFlying;
     }
 
     void Update()
@@ -113,8 +115,8 @@ public class EnemyMovement_Angel : MonoBehaviour
         {
             s_angelSounds.Stop();
             s_angelSounds.clip = c_angelAttack;
-            s_angelSounds.volume = 0.3f;
-            s_angelSounds.pitch = 1f;
+            s_angelSounds.volume = volumeValueWhenAttack;
+            s_angelSounds.pitch = pitchOfSoundWhenAttack;
             s_angelSounds.Play();
         }
 
@@ -128,7 +130,7 @@ public class EnemyMovement_Angel : MonoBehaviour
             s_angelSounds.Stop();
             s_angelSounds.clip = c_angelFlying;
             s_angelSounds.volume = volumeOfFlyingSound;
-            s_angelSounds.pitch = 1.4f;
+            s_angelSounds.pitch = pitchOfSoundWhenFlying;
             s_angelSounds.Play();
         }
 

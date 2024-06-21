@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
     public float timerCooldown;
     public GameObject floatingPoints, parentFloatingPoints, enemyParent;
     public AudioSource s_enemyDamaged;
+    public float pitchOfSound = 1.6f, volumeValue = 0.5f;
 
     private Animator animator;
     private float timer;
@@ -20,8 +21,8 @@ public class EnemyHealth : MonoBehaviour
         timer = timerCooldown;
 
         s_enemyDamaged.loop = false;
-        s_enemyDamaged.pitch = 1.6f;
-        s_enemyDamaged.volume = 0.5f;
+        s_enemyDamaged.pitch = pitchOfSound;
+        s_enemyDamaged.volume = volumeValue;
     }
 
     private void Update()

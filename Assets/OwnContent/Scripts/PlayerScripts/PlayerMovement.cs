@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public SpriteRenderer playerSprite;
     public Animator Animator;
     public NotifyOnCollision NotifyCollisionGround;
-    public float Speed = 4.5f, JumpForce = 20f, jumpCooldown;
+    public float Speed = 4.5f, JumpForce = 20f, jumpCooldown, pitchOfSound = 1f, volumeValue = 0.2f;
 
     private float timer;
     private bool isOnGround;
@@ -29,8 +29,8 @@ public class PlayerMovement : MonoBehaviour
 
         isWalkig = false;
 
-        SoundManager.instance.s_walk.volume = 0.2f;
-        SoundManager.instance.s_walk.pitch = 1f;
+        SoundManager.instance.s_walk.volume = volumeValue;
+        SoundManager.instance.s_walk.pitch = pitchOfSound;
         SoundManager.instance.s_walk.loop = true;
     }
 

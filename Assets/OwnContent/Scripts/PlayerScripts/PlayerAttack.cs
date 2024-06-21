@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private uint hitDamage; //For seismic attack (will be implemented in Delivery 3)
     [SerializeField] private float timeBetweenHit;
-    [SerializeField] private GameObject playerBoddy;
 
     public KeyCode keyButtonAttack;
     public Animator animator;

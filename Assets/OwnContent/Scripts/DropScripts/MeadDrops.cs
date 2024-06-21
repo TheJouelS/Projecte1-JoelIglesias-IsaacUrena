@@ -1,5 +1,3 @@
-using System.Threading;
-using Unity.Collections;
 using UnityEngine;
 
 public class MeadDrops : MonoBehaviour
@@ -8,6 +6,7 @@ public class MeadDrops : MonoBehaviour
     [SerializeField] float timerFlip = 0.5f;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Animator animator;
+    [SerializeField] float pitchOfSound = 1f, volumeValue = 1f;
 
     private Rigidbody2D rgb;
     private float timer;
@@ -20,8 +19,8 @@ public class MeadDrops : MonoBehaviour
         animator.enabled = false;
 
         SoundManager.instance.s_catchDrops.loop = false;
-        SoundManager.instance.s_catchDrops.pitch = 1f;
-        SoundManager.instance.s_catchDrops.volume = 1f;
+        SoundManager.instance.s_catchDrops.pitch = pitchOfSound;
+        SoundManager.instance.s_catchDrops.volume = volumeValue;
     }
 
     private void Update()

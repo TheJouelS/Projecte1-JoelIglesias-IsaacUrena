@@ -7,7 +7,7 @@ public class ChangesLevelingUp : MonoBehaviour
     [SerializeField] List<GameObject> playerList = new List<GameObject>();
 
     public Vector3 CurrentScale = new Vector3(0.25f, 0.25f, 0);
-    public float PlayerScaleIncrease = 1.1f;
+    public float PlayerScaleIncrease = 1.1f, pitchOfSound = 1f, volumeValue = 0.3f;
 
     private GameObject currentPlayerAvatar;
     private int playerIndex = 0;
@@ -16,8 +16,8 @@ public class ChangesLevelingUp : MonoBehaviour
     private void Start()
     {
         SoundManager.instance.s_upLevel.loop = false;
-        SoundManager.instance.s_upLevel.pitch = 1f;
-        SoundManager.instance.s_upLevel.volume = 0.3f;
+        SoundManager.instance.s_upLevel.pitch = pitchOfSound;
+        SoundManager.instance.s_upLevel.volume = volumeValue;
 
         currentLevel = PlayerLevel.GetPlayerLevel();
         EvolveCharacter(true);

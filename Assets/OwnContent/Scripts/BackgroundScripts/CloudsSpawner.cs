@@ -24,15 +24,15 @@ public class CloudsSpawner : MonoBehaviour
 
         if (spawnTime <= 0)
         {
-            Spawn();
+            SpawnCloud();
             spawnTime = SpawnCooldown;
         }
     }
 
-    private void Spawn()
+    private void SpawnCloud()
     {
         randomY = Random.Range(minPosY, maxPosY);
-        randomIndex = Random.Range(0, generatedObject.Count - 1);
+        randomIndex = Random.Range(0, generatedObject.Count);
 
         var spawn = Instantiate(generatedObject[randomIndex]);
         spawn.transform.position = new Vector3(PosX, randomY, 0);

@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerScore : MonoBehaviour
 {
     public int score = 0;
+    public int maxScoreOfTheGame = 9999999;
 
     public static PlayerScore instance;
 
@@ -16,7 +17,7 @@ public class PlayerScore : MonoBehaviour
 
     public void UpScore()
     {
-        if (score < 9999999)
+        if (score < maxScoreOfTheGame - 1)
         {
             if (PlayerLevel.GetPlayerLevel() >= PlayerLevel.GetMaxLevel() / 2)
             {

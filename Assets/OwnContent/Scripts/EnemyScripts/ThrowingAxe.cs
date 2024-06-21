@@ -8,6 +8,8 @@ public class ThrowingAxe : MonoBehaviour
     [SerializeField] float speed, rotationSpeed;
     [SerializeField] uint damageToPlayer = 10;
     [SerializeField] Vector3 orientation;
+    [SerializeField] int maxNumOfEnemiesOnScreen = 10;
+    [SerializeField] float minVolumeValue = 0.2f, maxVolumeValue = 0.4f, pitchOfSound = 2f;
 
     private Transform playerPosition;
     private Vector3 direction;
@@ -17,10 +19,10 @@ public class ThrowingAxe : MonoBehaviour
 
     private void Start()
     {
-        if (EnemySpawner.enemyCounter <= 10)
+        if (EnemySpawner.enemyCounter <= maxNumOfEnemiesOnScreen)
         {
             float n;
-            n = Random.Range(0.2f, 0.4f);
+            n = Random.Range(minVolumeValue, maxVolumeValue);
             s_flyingAxe.volume = n;
         }
         else
@@ -45,7 +47,7 @@ public class ThrowingAxe : MonoBehaviour
         s_flyingAxe = GetComponent<AudioSource>();
         s_flyingAxe.Play();
         s_flyingAxe.loop = true;
-        s_flyingAxe.pitch = 2f;
+        s_flyingAxe.pitch = pitchOfSound;
     }
 
     void Update()

@@ -3,33 +3,33 @@ using UnityEngine;
 public class SideCollisionScreen : MonoBehaviour
 {
     public string LeftTagCollision = "LeftSideCollision", RightTagCollision = "RightSideCollision";
-    private static bool leftIsColliding = false, rightIsColliding = false;
+    private static bool leftScreenIsColliding = false, rightScreenIsColliding = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == LeftTagCollision)
-            leftIsColliding = true;
+            leftScreenIsColliding = true;
 
         if (collision.tag == RightTagCollision)
-            rightIsColliding = true;
+            rightScreenIsColliding = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == LeftTagCollision)
-            leftIsColliding = false;
+            leftScreenIsColliding = false;
 
         if (collision.tag == RightTagCollision)
-            rightIsColliding = false;
+            rightScreenIsColliding = false;
     }
 
     public static bool GetLeftIsColliding()
     {
-        return leftIsColliding;
+        return leftScreenIsColliding;
     }
 
     public static bool GetRightIsColliding()
     {
-        return rightIsColliding;
+        return rightScreenIsColliding;
     }
 }

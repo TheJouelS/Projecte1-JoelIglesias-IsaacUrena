@@ -4,6 +4,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float timeBeingDamaged;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private float pitchOfSound = 1f, volumeValue = 0.3f;
 
     private static bool isBeingDamaged = false;
     private static int copy_currentLife;
@@ -19,8 +20,8 @@ public class PlayerHealth : MonoBehaviour
             copy_timeBeingDamaged = timeBeingDamaged;
         }
 
-        SoundManager.instance.s_takeDamage.volume = 0.3f;
-        SoundManager.instance.s_takeDamage.pitch = 1f;
+        SoundManager.instance.s_takeDamage.volume = volumeValue;
+        SoundManager.instance.s_takeDamage.pitch = pitchOfSound;
         SoundManager.instance.s_takeDamage.loop = false;
     }
 
@@ -56,12 +57,6 @@ public class PlayerHealth : MonoBehaviour
         isBeingDamaged = true;
 
         SoundManager.instance.s_takeDamage.Play();
-    }
-
-    public static void Heal() //For purple drops (will be implemented in Delivery 3)
-    {
-        if (copy_currentLife < copy_maxLife)
-            copy_currentLife++;
     }
 
     public static void SetLifeNewLevel()

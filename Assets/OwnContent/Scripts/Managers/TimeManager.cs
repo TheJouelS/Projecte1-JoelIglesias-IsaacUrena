@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    [SerializeField] float CustomTimeDilation = 1f;
     [SerializeField] float totalTimeOfGame = 0f;
     private bool stopCounting = false;
 
@@ -18,7 +17,6 @@ public class TimeManager : MonoBehaviour
 
     void Start()
     {
-        CustomTimeDilation = 1f;
         totalTimeOfGame = 0f;
         stopCounting = false;
     }

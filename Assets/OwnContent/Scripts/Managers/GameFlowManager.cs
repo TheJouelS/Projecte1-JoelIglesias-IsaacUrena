@@ -6,6 +6,7 @@ public class GameFlowManager : MonoBehaviour
 {
     public KeyCode keyToStart, keyToPause, keyToRestart, keyToContinue;
     public GameObject buttonToResetGame;
+    public float maxLevelVolume = 0.5f, maxLevelPitchOfSound = 1f, mainMusicVolumeWhenPlaying = 0.035f, mainMusicVolumeWhenExitPlaying = 0.01f;
 
     private EGameState currentGameState = EGameState.START;
     private bool maxLevelReached = false, stopExecuting = false, firstTimeThatEnter = true;
@@ -27,8 +28,8 @@ public class GameFlowManager : MonoBehaviour
         buttonToResetGame.GetComponent<Button>().interactable = false;
         buttonToResetGame.GetComponent<Image>().color = new Color(255f, 255f, 255f, 150f/255f);
 
-        SoundManager.instance.s_maxLevel.volume = 0.5f;
-        SoundManager.instance.s_maxLevel.pitch = 1f;
+        SoundManager.instance.s_maxLevel.volume = maxLevelVolume;
+        SoundManager.instance.s_maxLevel.pitch = maxLevelPitchOfSound;
         SoundManager.instance.s_maxLevel.loop = false;
     }
 
@@ -91,7 +92,7 @@ public class GameFlowManager : MonoBehaviour
                     SoundManager.instance.m_mainMusic.Play();
                     firstTimeThatEnter = false;
                 }
-                SoundManager.instance.m_mainMusic.volume = 0.035f;
+                SoundManager.instance.m_mainMusic.volume = mainMusicVolumeWhenPlaying;
                 break;
             case EGameState.PAUSED:
                 Time.timeScale = 0.0f;
@@ -127,7 +128,7 @@ public class GameFlowManager : MonoBehaviour
                 break;
             case EGameState.PLAYING:
                 gameIsPaused = true;
-                SoundManager.instance.m_mainMusic.volume = 0.01f;
+                SoundManager.instance.m_mainMusic.volume = mainMusicVolumeWhenExitPlaying;
                 break;
             case EGameState.PAUSED:
                 Time.timeScale = 1.0f;
